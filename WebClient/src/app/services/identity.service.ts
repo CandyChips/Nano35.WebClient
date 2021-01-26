@@ -10,35 +10,11 @@ export class IdentityService {
   constructor(private http: HttpClient) {
   }
 
-  register(command: RegisterModel): Observable<RegisterResult> {
-    return this.http.post<RegisterResult>(`http://localhost:5001/Identity/register`, command);
+  register(command: any): Observable<any> {
+    return this.http.post<any>(`http://localhost:5001/Identity/register`, command);
   }
 
-  getToken(command: AuthenticationModel): Observable<AuthenticationResult> {
-    return this.http.post<AuthenticationResult>(`http://localhost:5001/Identity/authenticate`, command);
+  getToken(command: any): Observable<any> {
+    return this.http.post<any>(`http://localhost:5001/Identity/authenticate`, command);
   }
-}
-
-export interface AuthenticationModel {
-  login: string;
-  password: string;
-}
-
-export interface AuthenticationResult {
-  id: Guid;
-  phone: string;
-  token: string;
-  error: string;
-}
-
-export interface RegisterModel {
-  phone: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}
-
-export interface RegisterResult {
-  id: Guid;
-  error: string;
 }

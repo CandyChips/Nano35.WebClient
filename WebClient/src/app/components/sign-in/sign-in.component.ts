@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {AuthenticationResult, IdentityService} from "../../services/identity.service";
+import { IdentityService} from "../../services/identity.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -34,15 +34,16 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
+    this.error = "";
     if (this.form?.invalid) {
       return;
     }
-    this.identityService.getToken(this.form?.value).subscribe((data: AuthenticationResult) => {
-      if (data.error != null) {
-        this.error = data.error;
-      }
-      else {
-      }
+    this.identityService.getToken(this.form?.value).subscribe(
+    (data: any) => {
+      console.log(data.token);
+    },
+    (data: any) => {
+      this.error = data.error.message;
     });
   }
 }
