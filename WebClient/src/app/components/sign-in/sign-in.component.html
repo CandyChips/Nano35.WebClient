@@ -1,0 +1,24 @@
+<script src="../../app.module.ts"></script>
+<div>
+  <h1>🔑 Авторизация</h1>
+  <form [formGroup]="form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Номер телефона</mat-label>
+      <input matInput formControlName="login">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Пароль</mat-label>
+      <input matInput formControlName="password">
+    </mat-form-field>
+
+    <button mat-raised-button
+            class="example-full-width"
+            color="primary"
+            [disabled]="form.invalid"
+            (click)="onSubmit()">
+      Войти
+    </button>
+    <h1>{{error}}</h1>
+  </form>
+</div>
