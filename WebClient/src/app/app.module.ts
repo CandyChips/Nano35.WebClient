@@ -10,7 +10,8 @@ import {HomeComponent} from "./components/home/home.component";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
 import {NavBarComponent} from "./components/nav-bar/nav-bar.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {JwtInterceptor} from "./helper/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IdentityService } from 'src/app/services/identity.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -13,6 +14,7 @@ export class SignUpComponent implements OnInit {
   error = "";
   loading = false;
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private identityService: IdentityService) {
     this.form = this.formBuilder.group({
@@ -51,6 +53,7 @@ export class SignUpComponent implements OnInit {
     this.identityService.getToken(this.form?.value).subscribe(
       (data: any) => {
         console.log(data.token);
+        this.router.navigate(['/signin']);
       },
       (data: any) => {
         this.error = data.error.message;

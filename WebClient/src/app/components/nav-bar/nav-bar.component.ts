@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
+import {FormBuilder, Validators} from "@angular/forms";
+import {IdentityService} from "../../services/identity.service";
+import {TokenService} from "../../services/token.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,5 +10,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+  identity: any;
 
+  constructor(
+    private tokenService: TokenService,
+    private identityService: IdentityService) {
+
+    tokenService.currentToken.subscribe((token: string) => {
+      if(token != null) {
+        identityService.getIdentity().subscribe((data: any) => {
+          this.identity = data;
+        });
+      }
+    });
+
+  }
 }

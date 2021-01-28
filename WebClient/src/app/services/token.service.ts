@@ -18,8 +18,12 @@ export class TokenService {
     this.currentToken = this.currentTokenSubject.asObservable();
   }
 
-  addToken(token: Guid) {
-    localStorage.setItem("token", token.toString());
+  changeToken(token: string) {
+    this.currentTokenSubject.next(token);
+  }
+
+  addToken(token: string) {
+    localStorage.setItem("token", token);
   }
 
   removeToken() {
