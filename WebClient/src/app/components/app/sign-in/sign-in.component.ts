@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IdentityService} from "../../services/identity.service";
 import {Router} from "@angular/router";
-import {TokenService} from "../../services/token.service";
+import {TokenService} from "../../../services/token.service";
+import {IdentityService} from "../../../services/identity.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +12,7 @@ import {TokenService} from "../../services/token.service";
 export class SignInComponent implements OnInit {
   form!: FormGroup;
   error = "";
-  private isSaved = false;
+  public isSaved = false;
 
   constructor(
     private tokenService: TokenService,
@@ -46,10 +46,8 @@ export class SignInComponent implements OnInit {
     this.identityService.getToken(this.form?.value).subscribe(
     (data: any) => {
       console.log(data.token);
-      this.tokenService.changeToken(data);
-      if(this.isSaved == true) {
-        this.tokenService.addToken(data);
-      }
+      localStorage.setItem("token", data.token);
+      this.tokenService.currentTokenSubject.next(data.token);
       this.router.navigate(['/']);
     },
     (data: any) => {

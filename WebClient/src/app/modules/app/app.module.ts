@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MaterialModule } from './app-material.component';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {SignInComponent} from "./components/sign-in/sign-in.component";
-import {HomeComponent} from "./components/home/home.component";
-import {SignUpComponent} from "./components/sign-up/sign-up.component";
-import {NavBarComponent} from "./components/nav-bar/nav-bar.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {JwtInterceptor} from "./helper/jwt.interceptor";
+import {SignInComponent} from "../../components/app/sign-in/sign-in.component";
+import {HomeComponent} from "../../components/app/home/home.component";
+import {NavBarComponent} from "../../components/app/nav-bar/nav-bar.component";
+import {ProfileComponent} from "../../components/app/profile/profile.component";
+import {InstancesComponent} from "../../components/app/instances/instances.component";
+import {SignUpComponent} from "../../components/app/sign-up/sign-up.component";
+import {MaterialModule} from "../common/app-material.component";
+import {TokenService} from "../../services/token.service";
+import {JwtInterceptor} from "../../helper/jwt.interceptor";
+import {NotFoundComponent} from "../../components/common/not-found/not-found.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import {JwtInterceptor} from "./helper/jwt.interceptor";
     HomeComponent,
     SignInComponent,
     SignUpComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProfileComponent,
+    InstancesComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +38,7 @@ import {JwtInterceptor} from "./helper/jwt.interceptor";
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    TokenService
   ],
   bootstrap: [AppComponent]
 })

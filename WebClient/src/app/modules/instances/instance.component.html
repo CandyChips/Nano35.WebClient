@@ -1,0 +1,22 @@
+<script src="../app/app.module.ts"></script>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <mat-selection-list #shoes [multiple]="false">
+      <mat-list-option routerLink="">
+        Организация
+      </mat-list-option>
+      <mat-list-option routerLink="units">
+        Подразделения
+      </mat-list-option>
+      <mat-list-option routerLink="workers">
+        Сотрудники
+      </mat-list-option>
+      <mat-list-option routerLink="storage">
+        Склад
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

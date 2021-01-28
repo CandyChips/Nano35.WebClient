@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import {TokenService} from "../services/token.service";
+import {Guid} from "guid-typescript";
 
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class InstanceTypeGuard implements CanActivate {
   constructor(
     private router: Router,
     private tokenService: TokenService
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = this.tokenService.currentTokenSubject.value;
-    if (currentUser) {
-      return true;
+    const currentInstance = this.tokenService.currentInstanceSubject.value;
+    if (currentInstance == null) {
+      this.router.navigate(['/instances']);
+      return false;
     }
-    this.router.navigate(['/signin'], { queryParams: { returnUrl: state.url } });
-    return false;
+    return true;
   }
 }

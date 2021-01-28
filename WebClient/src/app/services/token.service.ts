@@ -11,19 +11,18 @@ export class TokenService {
   public currentTokenSubject: BehaviorSubject<string>;
   public currentToken: Observable<string>;
 
+  public currentInstanceSubject: BehaviorSubject<any>;
+  public currentInstance: Observable<any>;
+
   constructor(
     private http: HttpClient,
     private identityService: IdentityService) {
+
     this.currentTokenSubject = new BehaviorSubject<string>(localStorage.getItem('token') || "");
     this.currentToken = this.currentTokenSubject.asObservable();
-  }
 
-  changeToken(token: string) {
-    this.currentTokenSubject.next(token);
-  }
-
-  addToken(token: string) {
-    localStorage.setItem("token", token);
+    this.currentInstanceSubject = new BehaviorSubject<any>(null);
+    this.currentInstance = this.currentInstanceSubject.asObservable();
   }
 
   removeToken() {

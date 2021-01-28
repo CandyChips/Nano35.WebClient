@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button
+            routerLink="/">
+      Nano35
+    </button>
+    <span class="example-spacer"></span>
+    <ng-container *ngIf="identity == null">
+      <button mat-icon-button
+              routerLink="/signin"
+              class="example-icon"
+              aria-label="Example icon-button with menu icon">
+        <mat-icon>login</mat-icon>
+      </button>
+      <button mat-icon-button
+              routerLink="/signup"
+              class="example-icon"
+              aria-label="Example icon-button with menu icon">
+        <mat-icon>supervised_user_circle</mat-icon>
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="identity != null">
+      <button mat-button
+              routerLink="/profile">
+        {{identity.data.name}}
+      </button>
+      <button mat-button
+              routerLink="/instances">
+        Организации
+      </button>
+    </ng-container>
+  </mat-toolbar-row>
+</mat-toolbar>
