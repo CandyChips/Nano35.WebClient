@@ -10,7 +10,6 @@ export class HomeInstanceComponent {
   currentInstance: any;
   constructor(private tokenService: TokenService) {
     console.log("app instance")
-    console.log(tokenService.currentInstanceSubject.value);
     this.currentInstance = tokenService.currentInstanceSubject.value;
   }
 }

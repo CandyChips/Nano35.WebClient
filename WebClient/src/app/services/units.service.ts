@@ -7,7 +7,7 @@ import { User } from '../models/user';
 import {TokenService} from "./token.service";
 
 @Injectable({ providedIn: 'root' })
-export class WorkersService {
+export class UnitsService {
   constructor(
     private tokenService: TokenService,
     private http: HttpClient) {
@@ -19,7 +19,7 @@ export class WorkersService {
     return headers.set('x-instance-id', this.tokenService.currentInstanceSubject.value.id);
   }
 
-  getAllWorkers(): Observable<any> {
-    return this.http.get<any>(`http://localhost:5002/Workers/GetAllWorkers`, {headers: this.addHeaders()});
+  getAllUnits(): Observable<any> {
+    return this.http.get<any>(`http://localhost:5002/Units/GetAllUnits`, {headers: this.addHeaders()});
   }
 }

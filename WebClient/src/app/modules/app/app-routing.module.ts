@@ -11,7 +11,7 @@ import {InstanceTypeGuard} from "../../guards/instance-type.guard";
 import {NotFoundComponent} from "../../components/common/not-found/not-found.component";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', pathMatch: 'full', component: HomeComponent},
   { path: 'signin', component: SignInComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},

@@ -1,7 +1,4 @@
-<link rel="stylesheet" href="../../app/instances/instances.component.scss">
 <div *ngIf="workers != null" class="full-width">
-  <button mat-button color="primary">Добавить</button>
-  <button mat-button color="primary">Статистика</button>
   <table mat-table [dataSource]="workers" class="mat-elevation-z8, full-width">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Имя </th>

@@ -6,11 +6,12 @@ import {TokenService} from "../../../services/token.service";
 
 @Component({
   selector: 'app-instances',
-  templateUrl: './instances.component.html'
+  templateUrl: './instances.component.html',
+  styleUrls: ["./instances.component.scss"]
 })
 export class InstancesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'orgName', 'action'];
-  instances: any;
+  instances: any[] | undefined;
 
   constructor(
     private router: Router,

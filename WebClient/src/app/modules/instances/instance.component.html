@@ -1,17 +1,16 @@
-<script src="../app/app.module.ts"></script>
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
-    <mat-selection-list #shoes [multiple]="false">
-      <mat-list-option routerLink="">
+    <mat-selection-list [multiple]="false">
+      <mat-list-option routerLink="/instance">
         Организация
       </mat-list-option>
-      <mat-list-option routerLink="units">
+      <mat-list-option routerLink="/instance/units">
         Подразделения
       </mat-list-option>
-      <mat-list-option routerLink="workers">
+      <mat-list-option routerLink="/instance/workers">
         Сотрудники
       </mat-list-option>
-      <mat-list-option routerLink="storage">
+      <mat-list-option routerLink="/instance/storage">
         Склад
       </mat-list-option>
     </mat-selection-list>
