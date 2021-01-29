@@ -1,20 +1,53 @@
-<div>
-  <h1>🔑 Новое подразделение</h1>
-  <form>
+<div class="content-width" *ngIf="loaded">
+  <h1>🔑 Новый пользователь</h1>
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Имя</mat-label>
+      <input formControlName="name" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Роль</mat-label>
+      <mat-select
+        formControlName="roleId"
+        style="width: 100%;">
+        <mat-option *ngFor="let item of workerRoles" [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Комментарий</mat-label>
+      <input formControlName="comment" matInput >
+    </mat-form-field>
+
     <mat-form-field class="full-width">
       <mat-label>Номер телефона</mat-label>
-      <input matInput >
+      <input formControlName="phone" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Почта</mat-label>
+      <input formControlName="email" matInput >
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Пароль</mat-label>
-      <input matInput >
+      <input formControlName="password" type="password" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Подтверждение пароля</mat-label>
+      <input formControlName="passwordConfirm" type="password" matInput >
     </mat-form-field>
 
     <button mat-raised-button
+            (click)="onSubmin()"
             class="full-width"
             color="primary">
       Создать
     </button>
   </form>
+</div>
+<div class="content-width" *ngIf="!loaded">
+  <h1>Загрузка</h1>
 </div>

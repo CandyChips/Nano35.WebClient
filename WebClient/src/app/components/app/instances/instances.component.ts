@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {IdentityService} from "../../../services/identity.service";
 import {InstanceService} from "../../../services/instance.service";
 import {TokenService} from "../../../services/token.service";
+import {Guid} from "guid-typescript";
 
 @Component({
   selector: 'app-instances',
@@ -19,9 +20,13 @@ export class InstancesComponent implements OnInit {
     private identityService: IdentityService,
     private instanceService: InstanceService) {
 
-    instanceService.getAllInstances().subscribe((data: any) => {
-      this.instances = data.data;
-    });
+    this.identityService.getIdentity()
+      .subscribe((data: any) => {
+      instanceService.getAllInstances(data.data.id, Guid.createEmpty(), Guid.createEmpty())
+        .subscribe((data: any) => {
+        this.instances = data;
+      });
+    })
   }
 
   ngOnInit() {

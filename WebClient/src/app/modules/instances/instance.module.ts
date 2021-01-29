@@ -11,6 +11,7 @@ import {WorkersInstanceComponent} from "../../components/instance/workers/worker
 import {UnitsInstanceComponent} from "../../components/instance/units/units-insatnce.component";
 import {UnitsInstanceAddComponent} from "../../components/instance/units/units-add/units-add-insatnce.component";
 import {UnitsInstanceViewComponent} from "../../components/instance/units/units-view/units-view-insatnce.component";
+import {UnitsInstanceDetailsComponent} from "../../components/instance/units/units-details/units-details-insatnce.component";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {UnitsInstanceViewComponent} from "../../components/instance/units/units-
 
     UnitsInstanceComponent,
     UnitsInstanceAddComponent,
+    UnitsInstanceDetailsComponent,
     UnitsInstanceViewComponent
   ],
   imports: [

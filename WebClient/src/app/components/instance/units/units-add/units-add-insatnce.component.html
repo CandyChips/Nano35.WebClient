@@ -1,20 +1,43 @@
-<div>
-  <h1>🔑 Новый сотрудник</h1>
-  <form>
+<div class="content-width" *ngIf="loaded">
+  <h1>🔑 Новое подразделение</h1>
+  <form [formGroup]="form">
     <mat-form-field class="full-width">
-      <mat-label>Номер телефона</mat-label>
-      <input matInput >
+      <mat-label>Название</mat-label>
+      <input formControlName="name" matInput >
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Пароль</mat-label>
-      <input matInput >
+      <mat-label>Тип подразделения</mat-label>
+      <mat-select
+        formControlName="unitTypeId"
+        style="width: 100%;">
+        <mat-option *ngFor="let item of unitTypes" [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Номер телефона</mat-label>
+      <input formControlName="phone" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Адресс</mat-label>
+      <input formControlName="adress" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Рабочий формат</mat-label>
+      <input formControlName="workingFormat" matInput >
     </mat-form-field>
 
     <button mat-raised-button
+            (click)="onSubmin()"
             class="full-width"
             color="primary">
       Создать
     </button>
   </form>
+</div>
+<div class="content-width" *ngIf="!loaded">
+  <h1>Загрузка</h1>
 </div>

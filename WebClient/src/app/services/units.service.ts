@@ -13,13 +13,25 @@ export class UnitsService {
     private http: HttpClient) {
   }
 
-  private addHeaders(): HttpHeaders
-  {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return headers.set('x-instance-id', this.tokenService.currentInstanceSubject.value.id);
+  getAllUnits(instanceId: Guid, unitTypeId: Guid): Observable<any> {
+    let dest = "http://localhost:5002/Units/GetAllUnits?instanceId=" + instanceId.toString();
+
+    if(!unitTypeId.isEmpty()) {
+      dest += "&regionId=" + unitTypeId.toString();
+    }
+
+    return this.http.get<any>(dest);
   }
 
-  getAllUnits(): Observable<any> {
-    return this.http.get<any>(`http://localhost:5002/Units/GetAllUnits`, {headers: this.addHeaders()});
+  getAllUnitTypes(): Observable<any> {
+    let dest = "http://localhost:5002/Units/GetAllUnitTypes";
+
+    return this.http.get<any>(dest);
+  }
+
+  createUnit(data: any) {
+    let dest = "http://localhost:5002/Units/CreateUnit";
+
+    return this.http.post<any>(dest, data);
   }
 }

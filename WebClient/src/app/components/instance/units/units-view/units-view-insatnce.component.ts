@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {WorkersService} from "../../../../services/workers.service";
+import {Guid} from "guid-typescript";
+import {TokenService} from "../../../../services/token.service";
+import {UnitsService} from "../../../../services/units.service";
 
 @Component({
   selector: 'app-insatnce-units-view',
@@ -8,12 +10,13 @@ import {WorkersService} from "../../../../services/workers.service";
   styleUrls: ['./units-view-insatnce.component.scss']
 })
 export class UnitsInstanceViewComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'phone', 'comment', 'action'];
-  workers: any;
+  displayedColumns: string[] = ['name', 'adress', 'workingFormat', 'phone', 'unitType', 'action'];
+  units: any;
 
   constructor(
     private router: Router,
-    private workersService: WorkersService) {
+    private tokenService: TokenService,
+    private unitsService: UnitsService) {
   }
 
   ngOnInit() {
@@ -21,13 +24,13 @@ export class UnitsInstanceViewComponent implements OnInit {
   }
 
   load() {
-    this.workersService.getAllWorkers().subscribe((data: any) => {
-      this.workers = data.data;
-      console.log(this.workers);
+    this.unitsService.getAllUnits(this.tokenService.currentInstanceSubject.value.id, Guid.createEmpty()).subscribe((data: any) => {
+      this.units = data;
+      console.log(this.units);
     })
   }
 
-  kick(user: any) {
-    console.log(user.name + " пошел нахуй")
+  detailsOf(unit: any) {
+    console.log(unit.name)
   }
 }

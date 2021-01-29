@@ -7,11 +7,11 @@ import {UnitsService} from "../../../../services/units.service";
 import {Guid} from "guid-typescript";
 
 @Component({
-  selector: 'app-insatnce-units-add',
-  templateUrl: './units-add-insatnce.component.html',
-  styleUrls: ['./units-add-insatnce.component.scss']
+  selector: 'app-insatnce-units-details',
+  templateUrl: './units-details-insatnce.component.html',
+  styleUrls: ['./units-details-insatnce.component.scss']
 })
-export class UnitsInstanceAddComponent {
+export class UnitsInstanceDetailsComponent {
   form!: FormGroup;
   error = "";
   unitTypes: any;

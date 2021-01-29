@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {WorkersService} from "../../../../services/workers.service";
+import {Guid} from "guid-typescript";
+import {IdentityService} from "../../../../services/identity.service";
+import {TokenService} from "../../../../services/token.service";
 
 @Component({
   selector: 'app-insatnce-workers-view',
@@ -13,6 +16,7 @@ export class WorkersInstanceViewComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private tokenService: TokenService,
     private workersService: WorkersService) {
   }
 
@@ -21,9 +25,9 @@ export class WorkersInstanceViewComponent implements OnInit {
   }
 
   load() {
-    this.workersService.getAllWorkers().subscribe((data: any) => {
-      this.workers = data.data;
-      console.log(this.workers);
+    this.workersService.getAllWorkers(Guid.createEmpty(), this.tokenService.currentInstanceSubject.value.id).subscribe((data: any) => {
+      this.workers = data;
+      console.log(data);
     })
   }
 

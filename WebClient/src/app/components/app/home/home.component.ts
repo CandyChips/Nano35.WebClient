@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Guid} from "guid-typescript";
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   constructor() {
-    console.log("app home")
+    console.log(Guid.create().toString())
   }
 }

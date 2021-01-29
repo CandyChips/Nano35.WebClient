@@ -18,10 +18,6 @@ export class IdentityService {
     return this.http.post<any>(`http://localhost:5001/Identity/authenticate`, command);
   }
 
-  getIdentityById(command: any): Observable<any> {
-    return this.http.get<any>(`http://localhost:5001/Identity/GetUserById/Id=` + command);
-  }
-
   getIdentity(): Observable<any> {
     return this.http.get<any>(`http://localhost:5001/Identity/GetUserFromToken`);
   }
