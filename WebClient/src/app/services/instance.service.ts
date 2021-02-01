@@ -11,15 +11,7 @@ export class InstanceService {
   }
 
   getAllInstances(userId: Guid, regionId: Guid, instanceTypeId: Guid): Observable<any> {
-    let dest = "http://localhost:5002/Instances/GetAllInstances?userId=" + userId.toString();
-
-    if(!regionId.isEmpty()) {
-      dest += "&regionId=" + regionId.toString();
-    }
-
-    if(!instanceTypeId.isEmpty()) {
-      dest += "&instanceTypeId=" + instanceTypeId.toString();
-    }
+    let dest = "http://localhost:5102/Instances/GetAllInstances?userId=" + userId.toString();
 
     return this.http.get<any>(dest);
   }

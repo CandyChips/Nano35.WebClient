@@ -4,11 +4,13 @@ import {HomeInstanceComponent} from "../../components/instance/home/home-insatnc
 import {NotFoundComponent} from "../../components/common/not-found/not-found.component";
 import {WorkersInstanceComponent} from "../../components/instance/workers/workers-insatnce.component";
 import {UnitsInstanceComponent} from "../../components/instance/units/units-insatnce.component";
+import {StorageInstanceComponent} from "../../components/instance/storage/storage-insatnce.component";
 
 const routes: Routes = [
   { path: '', component: HomeInstanceComponent},
   { path: 'workers', component: WorkersInstanceComponent},
   { path: 'units', component: UnitsInstanceComponent},
+  { path: 'storage', component: StorageInstanceComponent},
   { path: '**', component: NotFoundComponent }
 ];
 

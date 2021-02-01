@@ -11,14 +11,14 @@ export class IdentityService {
   }
 
   register(command: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:5001/Identity/register`, command);
+    return this.http.post<any>(`http://localhost:5101/Identity/register`, command);
   }
 
   getToken(command: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:5001/Identity/authenticate`, command);
+    return this.http.post<any>(`http://localhost:5101/Identity/authenticate`, command);
   }
 
   getIdentity(): Observable<any> {
-    return this.http.get<any>(`http://localhost:5001/Identity/GetUserFromToken`);
+    return this.http.get<any>(`http://localhost:5101/Identity/GetUserFromToken`);
   }
 }

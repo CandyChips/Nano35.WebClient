@@ -12,6 +12,10 @@ import {UnitsInstanceComponent} from "../../components/instance/units/units-insa
 import {UnitsInstanceAddComponent} from "../../components/instance/units/units-add/units-add-insatnce.component";
 import {UnitsInstanceViewComponent} from "../../components/instance/units/units-view/units-view-insatnce.component";
 import {UnitsInstanceDetailsComponent} from "../../components/instance/units/units-details/units-details-insatnce.component";
+import {StorageInstanceComponent} from "../../components/instance/storage/storage-insatnce.component";
+import {StorageInstanceViewComponent} from "../../components/instance/storage/storage-view/storage-view-insatnce.component";
+import {StorageInstanceAddComponent} from "../../components/instance/storage/storage-add/storage-add-insatnce.component";
+import {ArticleAddDialogComponent} from "../../components/instance/storage/article-add/article-add.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +29,12 @@ import {UnitsInstanceDetailsComponent} from "../../components/instance/units/uni
     UnitsInstanceComponent,
     UnitsInstanceAddComponent,
     UnitsInstanceDetailsComponent,
-    UnitsInstanceViewComponent
+    UnitsInstanceViewComponent,
+
+    StorageInstanceComponent,
+    StorageInstanceViewComponent,
+    StorageInstanceAddComponent,
+    ArticleAddDialogComponent
   ],
   imports: [
     FormsModule,
