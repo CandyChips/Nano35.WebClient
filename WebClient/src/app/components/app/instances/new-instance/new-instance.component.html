@@ -1,0 +1,53 @@
+<div class="content-width">
+  <h1>🔑 Новая организация</h1>
+  <form>
+    <mat-form-field class="full-width">
+      <mat-label>Название сервиса</mat-label>
+      <input formControlName="name" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Название организации</mat-label>
+      <input formControlName="realName" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Эл почта</mat-label>
+      <input formControlName="email" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Описание</mat-label>
+      <input formControlName="info" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Номер телефона</mat-label>
+      <input formControlName="phone" matInput>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Регион</mat-label>
+      <mat-select
+        formControlName="regionId"
+        style="width: 100%;">
+        <mat-option *ngFor="let item of regions" [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Тип</mat-label>
+      <mat-select
+        formControlName="typeId"
+        style="width: 100%;">
+        <mat-option *ngFor="let item of types" [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button
+            class="full-width"
+            color="primary">
+      Создать
+    </button>
+  </form>
+</div>

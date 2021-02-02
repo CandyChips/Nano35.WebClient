@@ -1,28 +1,12 @@
-<div *ngIf="instances != null" class="full-width">
-  <table mat-table [dataSource]="instances" class="mat-elevation-z8, full-width">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Назание </th>
-      <td mat-cell *matCellDef="let element"> {{element.orgName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> Почта </th>
-      <td mat-cell *matCellDef="let element"> {{element.orgEmail}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="orgName">
-      <th mat-header-cell *matHeaderCellDef> Организация </th>
-      <td mat-cell *matCellDef="let element"> {{element.orgName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef  class="actions-header"> Действия </th>
-      <td mat-cell *matCellDef="let element" class="actions"> {{element.symbol}}
-        <button mat-raised-button color="primary" (click)="selectInstance(element)">Войти</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
+<mat-tab-group>
+  <mat-tab label="Обзор">
+    <ng-template matTabContent>
+      <app-view-instance></app-view-instance>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Добавить">
+    <ng-template matTabContent>
+      <app-new-instance></app-new-instance>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

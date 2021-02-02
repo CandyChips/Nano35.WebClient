@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {Guid} from "guid-typescript";
 import {TokenService} from "../../../../services/token.service";
 import {UnitsService} from "../../../../services/units.service";
+import {StorageService} from "../../../../services/storage.service";
 
 @Component({
   selector: 'app-insatnce-storage-view',
@@ -10,13 +11,13 @@ import {UnitsService} from "../../../../services/units.service";
   styleUrls: ['./storage-view-insatnce.component.scss']
 })
 export class StorageInstanceViewComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'adress', 'workingFormat', 'phone', 'unitType', 'action'];
-  units: any;
+  displayedColumns: string[] = ['article', 'condition', 'purchase', 'comment'];
+  items: any;
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private unitsService: UnitsService) {
+    private storageService: StorageService) {
   }
 
   ngOnInit() {
@@ -24,13 +25,12 @@ export class StorageInstanceViewComponent implements OnInit {
   }
 
   load() {
-    this.unitsService.getAllUnits(this.tokenService.currentInstanceSubject.value.id, Guid.createEmpty()).subscribe((data: any) => {
-      this.units = data;
-      console.log(this.units);
-    })
-  }
+    this.storageService.getAllStorageItems(this.tokenService.currentInstanceSubject.value.id).subscribe(
+      (success: any) => {
+        this.items = success;
+      },
+      (error: any) => {
 
-  detailsOf(unit: any) {
-    console.log(unit.name)
+      });
   }
 }

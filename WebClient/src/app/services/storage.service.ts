@@ -19,6 +19,12 @@ export class StorageService {
     return this.http.get<any>(dest);
   }
 
+  getAllStorageItemConditions(): Observable<any> {
+    let dest = "http://localhost:5103/StorageItems/GetAllStorageItemConditions";
+
+    return this.http.get<any>(dest);
+  }
+
   getAllArticles(instanceId: Guid): Observable<any> {
     let dest = "http://localhost:5103/Articles/GetAllArticles?instanceId=" + instanceId.toString()
 

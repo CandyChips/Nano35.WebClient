@@ -15,6 +15,8 @@ import { MaterialModule} from "../common/app-material.component";
 import { TokenService} from "../../services/token.service";
 import { JwtInterceptor} from "../../helper/jwt.interceptor";
 import { NotFoundComponent} from "../../components/common/not-found/not-found.component";
+import {ViewInstancesComponent} from "../../components/app/instances/view-instance/view-instance.component";
+import {NewInstancesComponent} from "../../components/app/instances/new-instance/new-instance.component";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { NotFoundComponent} from "../../components/common/not-found/not-found.co
     NavBarComponent,
     ProfileComponent,
     InstancesComponent,
+    ViewInstancesComponent,
+    NewInstancesComponent,
     NotFoundComponent
   ],
   imports: [

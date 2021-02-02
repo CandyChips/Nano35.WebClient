@@ -7,6 +7,7 @@ import {UnitsService} from "../../../../services/units.service";
 import {Guid} from "guid-typescript";
 import {MatDialog} from "@angular/material/dialog";
 import {ArticleAddDialogComponent} from "../article-add/article-add.component";
+import {StorageService} from "../../../../services/storage.service";
 
 @Component({
   selector: 'app-insatnce-storage-add',
@@ -16,24 +17,31 @@ import {ArticleAddDialogComponent} from "../article-add/article-add.component";
 export class StorageInstanceAddComponent {
   form!: FormGroup;
   error = "";
-  unitTypes: any;
+  conditions: any;
+  articles: any;
   loaded = false;
 
   constructor(
     public dialog: MatDialog,
     private tokenService: TokenService,
     private identityService: IdentityService,
+    private storageService: StorageService,
     private router: Router,
     private unitsService: UnitsService,
     private formBuilder: FormBuilder) {
 
-    this.unitsService.getAllUnitTypes().subscribe((data: any) => {
-      this.unitTypes = data;
-      this.loaded = true;
+    this.storageService.getAllStorageItemConditions().subscribe((success: any) => {
+      this.conditions = success;
+      this.storageService.getAllArticles(this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+        this.articles = success;
+        this.loaded = true;
+      })
+    }, (error: any) => {
+
     });
 
     this.form = this.formBuilder.group({
-      id: [
+      newId: [
         Guid.create().toString(),
         [
           Validators.required
@@ -45,31 +53,37 @@ export class StorageInstanceAddComponent {
           Validators.required
         ]
       ],
-      unitTypeId: [
+      comment: [
         "",
         [
           Validators.required
         ]
       ],
-      phone: [
+      hiddenComment: [
         "",
         [
           Validators.required
         ]
       ],
-      workingFormat: [
+      retailPrice: [
         "",
         [
           Validators.required
         ]
       ],
-      adress: [
+      purchasePrice: [
         "",
         [
           Validators.required
         ]
       ],
-      name: [
+      articleId: [
+        "",
+        [
+          Validators.required
+        ]
+      ],
+      conditionId: [
         "",
         [
           Validators.required
@@ -88,16 +102,13 @@ export class StorageInstanceAddComponent {
   }
 
   onSubmin() {
-    this.identityService.getIdentity().subscribe((data: any) => {
-      this.unitsService.createUnit(this.form.value)
-        .subscribe(
-          (data: any) => {
+    this.storageService.createStorageItem(this.form.value)
+      .subscribe(
+        (data: any) => {
 
-          },
-          (error: any) => {
-            console.log(error);
-          }
-        )
-    });
+        },
+        (error: any) => {
+          console.log(error);
+        });
   }
 }

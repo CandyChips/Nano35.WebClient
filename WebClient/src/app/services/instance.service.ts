@@ -15,4 +15,16 @@ export class InstanceService {
 
     return this.http.get<any>(dest);
   }
+
+  getAllRegions(): Observable<any> {
+    let dest = "http://localhost:5102/Instances/GetAllRegions";
+
+    return this.http.get<any>(dest);
+  }
+
+  getAllTypes(): Observable<any> {
+    let dest = "http://localhost:5102/Instances/GetAllInstanceTypes";
+
+    return this.http.get<any>(dest);
+  }
 }

@@ -1,34 +1,47 @@
 <div class="content-width" *ngIf="loaded">
-  <h1>🔑 Новое подразделение</h1>
+  <h1>🔑 Новое изделие</h1>
   <form [formGroup]="form">
-    <mat-form-field class="full-width">
-      <mat-label>Название</mat-label>
-      <input formControlName="name" matInput >
-    </mat-form-field>
-
-    <mat-form-field class="full-width">
-      <mat-label>Тип подразделения</mat-label>
+    <mat-form-field class="full-width" >
+      <mat-label>Артикул</mat-label>
       <mat-select
-        formControlName="unitTypeId"
+        formControlName="articleId"
         style="width: 100%;">
-        <mat-option *ngFor="let item of unitTypes" [value]="item.id">{{item.name}}</mat-option>
+        <mat-option value="">
+          <button mat-button color="primary" (click)="openAddArticleDialog()">Создать</button>
+        </mat-option>
+        <mat-option *ngFor="let item of articles" [value]="item.id">
+          {{item.category}} {{item.categoryGroup}} {{item.brand}} {{item.model}}
+        </mat-option>
       </mat-select>
-      <button mat-raised-button (click)="openAddArticleDialog()">Pick one</button>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" >
+      <mat-label>Состояние</mat-label>
+      <mat-select
+        formControlName="conditionId"
+        style="width: 100%;">
+        <mat-option *ngFor="let item of conditions" [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Номер телефона</mat-label>
-      <input formControlName="phone" matInput >
+      <mat-label>Комментарий</mat-label>
+      <input formControlName="comment" matInput >
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Адресс</mat-label>
-      <input formControlName="adress" matInput >
+      <mat-label>Доп информация(скрытая)</mat-label>
+      <input formControlName="hiddenComment" matInput >
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Рабочий формат</mat-label>
-      <input formControlName="workingFormat" matInput >
+      <mat-label>Средняя цена в закупе</mat-label>
+      <input formControlName="retailPrice" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Цена продажи</mat-label>
+      <input formControlName="purchasePrice" matInput >
     </mat-form-field>
 
     <button mat-raised-button
