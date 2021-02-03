@@ -16,6 +16,12 @@ import {StorageInstanceComponent} from "../../components/instance/storage/storag
 import {StorageInstanceViewComponent} from "../../components/instance/storage/storage-view/storage-view-insatnce.component";
 import {StorageInstanceAddComponent} from "../../components/instance/storage/storage-add/storage-add-insatnce.component";
 import {ArticleAddDialogComponent} from "../../components/instance/storage/article-add/article-add.component";
+import {WarehouseViewInsatnceComponent} from "../../components/instance/storage/warehouse-view/warehouse-view-insatnce.component";
+import {ComingsViewInsatnceComponent} from "../../components/instance/storage/comings-view/comings-view-insatnce.component";
+import {ComingsAddInsatnceComponent} from "../../components/instance/storage/comings-add/comings-add-insatnce.component";
+import {ClientsInstanceComponent} from "../../components/instance/clients/clients-insatnce.component";
+import {ClientsAddDialogComponent} from "../../components/instance/clients/clients-add/clients-add.component";
+import {ClientsViewInsatnceComponent} from "../../components/instance/clients/clients-view/clients-view-insatnce.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +32,10 @@ import {ArticleAddDialogComponent} from "../../components/instance/storage/artic
     WorkersInstanceViewComponent,
     WorkersInstanceAddComponent,
 
+    ClientsInstanceComponent,
+    ClientsViewInsatnceComponent,
+    ClientsAddDialogComponent,
+
     UnitsInstanceComponent,
     UnitsInstanceAddComponent,
     UnitsInstanceDetailsComponent,
@@ -34,7 +44,10 @@ import {ArticleAddDialogComponent} from "../../components/instance/storage/artic
     StorageInstanceComponent,
     StorageInstanceViewComponent,
     StorageInstanceAddComponent,
-    ArticleAddDialogComponent
+    ArticleAddDialogComponent,
+    WarehouseViewInsatnceComponent,
+    ComingsViewInsatnceComponent,
+    ComingsAddInsatnceComponent
   ],
   imports: [
     FormsModule,

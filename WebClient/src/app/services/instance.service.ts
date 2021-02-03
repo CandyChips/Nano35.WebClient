@@ -27,4 +27,10 @@ export class InstanceService {
 
     return this.http.get<any>(dest);
   }
+
+  createInstance(data: any): Observable<any> {
+    let dest = "http://localhost:5102/Instances/CreateInstance";
+
+    return this.http.post<any>(dest, data);
+  }
 }

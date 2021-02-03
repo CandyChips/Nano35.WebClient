@@ -1,6 +1,6 @@
-<div class="content-width">
-  <h1>🔑 Новая организация</h1>
-  <form>
+<div *ngIf="!isLoading" class="content-width">
+  <h2>🔑 Новая организация</h2>
+  <form [formGroup]="form">
     <mat-form-field class="full-width">
       <mat-label>Название сервиса</mat-label>
       <input formControlName="name" matInput >
@@ -12,7 +12,7 @@
     </mat-form-field>
 
     <mat-form-field class="full-width">
-        <mat-label>Эл почта</mat-label>
+      <mat-label>Эл почта</mat-label>
       <input formControlName="email" matInput >
     </mat-form-field>
 
@@ -45,9 +45,14 @@
     </mat-form-field>
 
     <button mat-raised-button
+            (click)="onSubmitClick()"
             class="full-width"
             color="primary">
       Создать
     </button>
   </form>
+</div>
+
+<div class="content-width" *ngIf="isLoading">
+  <h1>Загрузка</h1>
 </div>

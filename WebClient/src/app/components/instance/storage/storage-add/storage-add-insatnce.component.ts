@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenService} from "../../../../services/token.service";
 import {IdentityService} from "../../../../services/identity.service";
 import {Router} from "@angular/router";
 import {UnitsService} from "../../../../services/units.service";
 import {Guid} from "guid-typescript";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ArticleAddDialogComponent} from "../article-add/article-add.component";
 import {StorageService} from "../../../../services/storage.service";
 
@@ -16,10 +16,10 @@ import {StorageService} from "../../../../services/storage.service";
 })
 export class StorageInstanceAddComponent {
   form!: FormGroup;
+  isLoading = true;
   error = "";
   conditions: any;
   articles: any;
-  loaded = false;
 
   constructor(
     public dialog: MatDialog,
@@ -28,18 +28,10 @@ export class StorageInstanceAddComponent {
     private storageService: StorageService,
     private router: Router,
     private unitsService: UnitsService,
-    private formBuilder: FormBuilder) {
-
-    this.storageService.getAllStorageItemConditions().subscribe((success: any) => {
-      this.conditions = success;
-      this.storageService.getAllArticles(this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
-        this.articles = success;
-        this.loaded = true;
-      })
-    }, (error: any) => {
-
-    });
-
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<StorageInstanceAddComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.updateContent();
     this.form = this.formBuilder.group({
       newId: [
         Guid.create().toString(),
@@ -92,23 +84,38 @@ export class StorageInstanceAddComponent {
     });
   }
 
+  updateContent() {
+    this.storageService.getAllStorageItemConditions().subscribe((success: any) => {
+      this.conditions = success;
+      this.storageService.getAllArticles(this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+        this.articles = success;
+        this.isLoading = false;
+      })
+    }, (error: any) => {
+
+    });
+  }
+
   openAddArticleDialog(): void {
     const dialogRef = this.dialog.open(ArticleAddDialogComponent, {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.updateContent();
       console.log(`Dialog result: ${result}`);
     });
   }
 
   onSubmin() {
+    this.isLoading = true;
     this.storageService.createStorageItem(this.form.value)
       .subscribe(
         (data: any) => {
-
+          this.dialogRef.close();
         },
         (error: any) => {
-          console.log(error);
+          this.isLoading = false;
+          alert(error.error.message)
         });
   }
 }

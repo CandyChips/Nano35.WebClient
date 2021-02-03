@@ -5,12 +5,14 @@ import {NotFoundComponent} from "../../components/common/not-found/not-found.com
 import {WorkersInstanceComponent} from "../../components/instance/workers/workers-insatnce.component";
 import {UnitsInstanceComponent} from "../../components/instance/units/units-insatnce.component";
 import {StorageInstanceComponent} from "../../components/instance/storage/storage-insatnce.component";
+import {ClientsInstanceComponent} from "../../components/instance/clients/clients-insatnce.component";
 
 const routes: Routes = [
   { path: '', component: HomeInstanceComponent},
   { path: 'workers', component: WorkersInstanceComponent},
   { path: 'units', component: UnitsInstanceComponent},
   { path: 'storage', component: StorageInstanceComponent},
+  { path: 'clients', component: ClientsInstanceComponent},
   { path: '**', component: NotFoundComponent }
 ];
 

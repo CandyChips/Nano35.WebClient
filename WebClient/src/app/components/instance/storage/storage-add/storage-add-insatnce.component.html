@@ -1,4 +1,4 @@
-<div class="content-width" *ngIf="loaded">
+<div class="content-width" *ngIf="!isLoading">
   <h1>🔑 Новое изделие</h1>
   <form [formGroup]="form">
     <mat-form-field class="full-width" >
@@ -6,8 +6,10 @@
       <mat-select
         formControlName="articleId"
         style="width: 100%;">
-        <mat-option value="">
-          <button mat-button color="primary" (click)="openAddArticleDialog()">Создать</button>
+        <mat-option disabled>
+            <span class="full-width">
+              <button mat-raised-button class="full-width" color="primary" (click)="openAddArticleDialog()">Создать</button>
+            </span>
         </mat-option>
         <mat-option *ngFor="let item of articles" [value]="item.id">
           {{item.category}} {{item.categoryGroup}} {{item.brand}} {{item.model}}
@@ -52,6 +54,6 @@
     </button>
   </form>
 </div>
-<div class="content-width" *ngIf="!loaded">
+<div class="content-width" *ngIf="isLoading">
   <h1>Загрузка</h1>
 </div>

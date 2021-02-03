@@ -1,0 +1,48 @@
+<div class="content-width" *ngIf="!isLoading">
+  <h2 mat-dialog-title>Добавление клиента</h2>
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Тип клиента</mat-label>
+      <mat-select
+        formControlName="clientTypeId"
+        style="width: 100%;">
+        <mat-option *ngFor="let item of clientTypes" [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Статус клиента</mat-label>
+      <mat-select
+        formControlName="clientStateId"
+        style="width: 100%;">
+        <mat-option *ngFor="let item of clientStates" [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Ф.И.О.</mat-label>
+      <input formControlName="name" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Почта</mat-label>
+      <input formControlName="email" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Контактный номер</mat-label>
+      <input formControlName="phone" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Скидка</mat-label>
+      <input formControlName="salle" matInput >
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="full-width" (click)="onSubmitClick()">Создать</button>
+  </form>
+</div>
+
+<div class="content-width" *ngIf="isLoading">
+  <h1>Загрузка</h1>
+</div>

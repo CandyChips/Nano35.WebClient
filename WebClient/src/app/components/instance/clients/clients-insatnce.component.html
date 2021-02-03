@@ -1,15 +1,20 @@
 <mat-tab-group>
-  <mat-tab label="Обзор">
+  <mat-tab>
     <ng-template mat-tab-label>
       Обзор
       <div class="example-button-container">
-        <button mat-mini-fab color="primary" (click)="openAddInstanceDialog()">
+        <button mat-mini-fab color="primary" (click)="openAddClientDialog()">
           <mat-icon>plus_one</mat-icon>
         </button>
       </div>
     </ng-template>
     <ng-template matTabContent>
-      <app-view-instance></app-view-instance>
+      <app-insatnce-clients-view></app-insatnce-clients-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Статистика">
+    <ng-template matTabContent>
+      Content 3
     </ng-template>
   </mat-tab>
 </mat-tab-group>

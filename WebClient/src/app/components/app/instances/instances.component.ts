@@ -4,6 +4,9 @@ import {IdentityService} from "../../../services/identity.service";
 import {InstanceService} from "../../../services/instance.service";
 import {TokenService} from "../../../services/token.service";
 import {Guid} from "guid-typescript";
+import {ClientsAddDialogComponent} from "../../instance/clients/clients-add/clients-add.component";
+import {MatDialog} from "@angular/material/dialog";
+import {NewInstancesComponent} from "./new-instance/new-instance.component";
 
 @Component({
   selector: 'app-instances',
@@ -15,6 +18,7 @@ export class InstancesComponent implements OnInit {
   instances: any[] | undefined;
 
   constructor(
+    public dialog: MatDialog,
     private router: Router,
     private tokenService: TokenService,
     private identityService: IdentityService,
@@ -35,5 +39,14 @@ export class InstancesComponent implements OnInit {
   selectInstance(instance: any){
     this.tokenService.currentInstanceSubject.next(instance);
     this.router.navigate(["/instance"]);
+  }
+
+  openAddInstanceDialog() {
+    const dialogRef = this.dialog.open(NewInstancesComponent, {
+      width: '600px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

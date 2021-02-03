@@ -1,15 +1,68 @@
 <mat-tab-group>
-  <mat-tab label="Обзор">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Наличие
+    </ng-template>
+    <ng-template matTabContent>
+      <app-insatnce-warehouse-view></app-insatnce-warehouse-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Оприходования
+      <div class="example-button-container">
+        <button mat-mini-fab color="primary" (click)="openAddComingDialog()">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+    <ng-template matTabContent>
+      <app-insatnce-comings-view></app-insatnce-comings-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Списания
+      <div class="example-button-container">
+        <button mat-mini-fab color="primary" (click)="alert('plus')">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+    <ng-template matTabContent>
+      <app-insatnce-comings-view></app-insatnce-comings-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Продажи
+      <div class="example-button-container">
+        <button mat-mini-fab color="primary" (click)="alert('plus')">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+    <ng-template matTabContent>
+      <app-insatnce-comings-view></app-insatnce-comings-view>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Номенклатура
+      <div class="example-button-container">
+        <button mat-mini-fab color="primary" (click)="openAddStorageItemDialog()">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
+    </ng-template>
     <ng-template matTabContent>
       <app-insatnce-storage-view></app-insatnce-storage-view>
     </ng-template>
   </mat-tab>
-  <mat-tab label="Добавить">
-    <ng-template matTabContent>
-      <app-insatnce-storage-add></app-insatnce-storage-add>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Статистика
     </ng-template>
-  </mat-tab>
-  <mat-tab label="Статистика">
     <ng-template matTabContent>
       Content 3
     </ng-template>
