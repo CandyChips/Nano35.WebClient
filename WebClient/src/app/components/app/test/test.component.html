@@ -1,0 +1,32 @@
+<div style="display: flex">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Категория</mat-label>
+      <mat-chip-list #chipList formArrayName="items">
+        <mat-chip
+          *ngFor="let tag of itemsArr.controls; let i = index"
+          [formGroupName]="i">
+          {{tag.value.name}}
+          <mat-icon (click)="onRemove(i)">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-form-field>
+  </form>
+  <form [formGroup]="categoryForm">
+    <mat-form-field>
+      <mat-label>Добавить</mat-label>
+      <mat-select>
+        <mat-option disabled="true">
+        <span style="display: flex">
+          <input matInput formControlName="name" (keydown)="handleInput($event)">
+          <button mat-button color="primary" (click)="onCreate()">Добавить</button>
+        </span>
+        </mat-option>
+        <mat-option *ngFor="let tag of filteredAllFruits | async" (click)="onSelect(tag)">
+          {{tag.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<pre>{{form.value | json}}</pre>

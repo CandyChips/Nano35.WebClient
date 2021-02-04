@@ -17,11 +17,13 @@ import { JwtInterceptor} from "../../helper/jwt.interceptor";
 import { NotFoundComponent} from "../../components/common/not-found/not-found.component";
 import {ViewInstancesComponent} from "../../components/app/instances/view-instance/view-instance.component";
 import {NewInstancesComponent} from "../../components/app/instances/new-instance/new-instance.component";
+import {TestComponent} from "../../components/app/test/test.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    TestComponent,//!!!
     SignInComponent,
     SignUpComponent,
     NavBarComponent,
