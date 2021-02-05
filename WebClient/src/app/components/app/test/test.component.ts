@@ -4,6 +4,51 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {HttpClient} from "@angular/common/http";
 import {Guid} from "guid-typescript";
+import {NestedTreeControl} from "@angular/cdk/tree";
+import {MatTreeNestedDataSource} from "@angular/material/tree";
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+
+
+const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Запчасти и комплектующие',
+    children: [
+      {name: 'Apple'},
+      {name: 'Banana'},
+      {name: 'Fruit loops'},
+    ]
+  },
+  {
+    name: 'Устройства',
+    children: [
+      {name: 'Apple'},
+      {name: 'Banana'},
+      {name: 'Fruit loops'},
+    ]
+  }, {
+    name: 'Аксесуары',
+    children: [
+      {
+        name: 'Green',
+        children: [
+          {name: 'Broccoli'},
+          {name: 'Brussels sprouts'},
+        ]
+      }, {
+        name: 'Orange',
+        children: [
+          {name: 'Pumpkins'},
+          {name: 'Carrots'},
+        ]
+      },
+    ]
+  },
+];
 
 @Component({
   selector: 'app-test',
@@ -11,91 +56,12 @@ import {Guid} from "guid-typescript";
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
-  form!: FormGroup;
-  categoryForm!: FormGroup;
-  allFruits: {id: Guid, name: string, parentCategoryId : Guid}[] = [];
-  filteredAllFruits: Observable<any[]> | undefined;
+  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      items: this.formBuilder.array([])
-    });
-
-    this.categoryForm = this.formBuilder.group({
-      name: [
-        ""
-      ]
-    });
-
-    this.http.get<any>("http://localhost:5000/articles").subscribe((success: any) => {
-      this.allFruits = success;
-      this.filteredAllFruits = this.categoryForm.controls.name.valueChanges.pipe(
-        startWith(''),
-        map(item => this.allFruits.filter(value => value.name.toLocaleLowerCase().indexOf(item.toLowerCase()) === 0)))
-    });
+  constructor() {
+    this.dataSource.data = TREE_DATA;
   }
 
-  handleInput(event: KeyboardEvent): void{
-    event.stopPropagation();
-  }
-
-  get itemsArr() {
-    return this.form.get('items') as FormArray;
-  }
-
-  onCreate() {
-    this.allFruits = [];
-    let newItem = {id: Guid.create().toString(), name: this.categoryForm.controls.name.value, parentCategoryId: this.itemsArr.at(this.itemsArr.length - 1).value.id };
-    console.log(newItem);
-    this.http.post<any>("http://localhost:5000/articles", newItem).subscribe((success: any) => {
-      this.itemsArr.push(this.formBuilder.group(newItem));
-      this.categoryForm.controls.name.setValue('');
-      this.http.get<any>("http://localhost:5000/articles?id=" + this.itemsArr.at(this.itemsArr.length - 1).value.id).subscribe((success: any) => {
-        this.allFruits = success;
-        this.filteredAllFruits = this.categoryForm.controls.name.valueChanges.pipe(
-          startWith(''),
-          map(item => this.allFruits.filter(value => value.name.toLocaleLowerCase().indexOf(item.toLowerCase()) === 0)))
-      });
-    });
-  }
-
-  onSelect(tag: any) {
-    this.allFruits = [];
-    this.itemsArr.push(
-      this.formBuilder.group(tag)
-    );
-    this.http.get<any>("http://localhost:5000/articles?id=" + this.itemsArr.at(this.itemsArr.length - 1).value.id).subscribe((success: any) => {
-      this.allFruits = success;
-      this.filteredAllFruits = this.categoryForm.controls.name.valueChanges.pipe(
-        startWith(''),
-        map(item => this.allFruits.filter(value => value.name.toLocaleLowerCase().indexOf(item.toLowerCase()) === 0)))
-    });
-  }
-
-  onRemove(index: number) {
-    this.allFruits = [];
-    for (let i = index; this.itemsArr.at(i) != null;)
-    {
-      console.log(i);
-      this.itemsArr.removeAt(i);
-    }
-    if(this.itemsArr.length == 0)
-    {
-      this.http.get<any>("http://localhost:5000/articles").subscribe((success: any) => {
-        this.allFruits = success;
-        this.filteredAllFruits = this.categoryForm.controls.name.valueChanges.pipe(
-          startWith(''),
-          map(item => this.allFruits.filter(value => value.name.toLocaleLowerCase().indexOf(item.toLowerCase()) === 0)))
-      });
-    }
-    else
-    {
-      this.http.get<any>("http://localhost:5000/articles?id=" + this.itemsArr.at(this.itemsArr.length - 1).value.id).subscribe((success: any) => {
-        this.allFruits = success;
-        this.filteredAllFruits = this.categoryForm.controls.name.valueChanges.pipe(
-          startWith(''),
-          map(item => this.allFruits.filter(value => value.name.toLocaleLowerCase().indexOf(item.toLowerCase()) === 0)))
-      });
-    }
-  }
+  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
 }

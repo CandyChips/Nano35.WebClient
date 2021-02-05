@@ -1,43 +1,36 @@
 <div class="content-width" *ngIf="!isLoading">
-  <h1>🔑 Новое изделие</h1>
+  <h1>Добавить товар</h1>
   <form [formGroup]="form">
     <mat-form-field class="full-width" >
-      <mat-label>Артикул</mat-label>
+      <mat-label>Наименование</mat-label>
       <mat-select
-        formControlName="articleId"
-        style="width: 100%;">
+        formControlName="articleId">
         <mat-option disabled>
-            <span class="full-width">
-              <button mat-raised-button class="full-width" color="primary" (click)="openAddArticleDialog()">Создать</button>
-            </span>
+          <button mat-button class="full-width" color="primary" (click)="openAddArticleDialog()">Создать</button>
         </mat-option>
+        <mat-divider></mat-divider>
         <mat-option *ngFor="let item of articles" [value]="item.id">
           {{item.category}} {{item.categoryGroup}} {{item.brand}} {{item.model}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-
     <mat-form-field class="full-width" >
       <mat-label>Состояние</mat-label>
       <mat-select
-        formControlName="conditionId"
-        style="width: 100%;">
-        <mat-option *ngFor="let item of conditions" [value]="item.id">{{item.name}}</mat-option>
+        formControlName="conditionId">
+        <mat-option *ngFor="let item of conditions" [value]="item.id">
+          {{item.name}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Комментарий</mat-label>
-      <input formControlName="comment" matInput >
-    </mat-form-field>
-
-    <mat-form-field class="full-width">
-      <mat-label>Доп информация(скрытая)</mat-label>
+      <mat-label>Доп информация</mat-label>
       <input formControlName="hiddenComment" matInput >
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Средняя цена в закупе</mat-label>
+      <mat-label>Цена в закупе</mat-label>
       <input formControlName="retailPrice" matInput >
     </mat-form-field>
 

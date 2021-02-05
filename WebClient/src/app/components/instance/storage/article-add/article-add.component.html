@@ -1,24 +1,116 @@
-<h2 mat-dialog-title>Создание артикула</h2>
+<h2 mat-dialog-title>Добавить наименование</h2>
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="form">
-    <mat-form-field class="full-width">
-      <mat-label>Тип</mat-label>
-      <mat-select
-        formControlName="articleTypeId"
-        style="width: 100%;">
-        <mat-option *ngFor="let item of articleTypes" [value]="item.id">{{item.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Группа категорий</mat-label>
-      <input formControlName="categoryGroup" matInput >
-    </mat-form-field>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Категория
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <mat-form-field class="full-width">
-      <mat-label>Категория</mat-label>
-      <input formControlName="category" matInput >
-    </mat-form-field>
+      <ng-template matExpansionPanelContent>
+        <form [formGroup]="categoriesform">
+          <mat-list class="full-width">
+            <mat-list-item
+              *ngFor="let tag of categoriesArr.controls; let i = index"
+              [formGroupName]="i">
+              <span>{{tag.value.name}}</span>
+              <span class="example-spacer"></span>
+              <div class="example-button-container">
+                <button mat-mini-fab color="warn">
+                  <mat-icon (click)="onRemoveCategory(i)">cancel</mat-icon>
+                </button>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item>
+              <form [formGroup]="categoryForm" class="full-width">
+                <mat-form-field class="full-width">
+                  <mat-label>
+                <span *ngIf="categoriesArr.controls[0] == undefined">
+                  Добавить категорию
+                </span>
+                    <span *ngIf="categoriesArr.controls[0] != undefined">
+                  Добавить подкатегорию к {{categoriesArr.controls[categoriesArr.controls.length - 1].value.name}}
+                </span>
+                  </mat-label>
+                  <mat-select>
+                    <mat-option disabled="true">
+                  <span style="display: flex">
+                    <input matInput placeholder="Устройства etc" formControlName="name" (keydown)="handleInput($event)">
+                    <button mat-button color="primary" (click)="onCreateCategory()">Добавить категорию</button>
+                  </span>
+                      <mat-divider></mat-divider>
+                    </mat-option>
+                    <mat-option *ngFor="let tag of filteredAllCategories | async" (click)="onSelectCategory(tag)">
+                      <span *ngIf="categoriesArr.controls[0] != undefined">{{categoriesArr.controls[categoriesArr.controls.length - 1].value.name}} -> </span> {{tag.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </form>
+            </mat-list-item>
+          </mat-list>
+
+          <!--      <mat-form-field class="full-width">-->
+          <!--        <mat-chip-list #chipList formArrayName="items">-->
+          <!--          <mat-chip>-->
+          <!--            Категории-->
+          <!--          </mat-chip>-->
+          <!--          <mat-chip-->
+          <!--            color="primary"-->
+          <!--            selected-->
+          <!--            *ngFor="let tag of categoriesArr.controls; let i = index"-->
+          <!--            [formGroupName]="i">-->
+          <!--            {{tag.value.name}}-->
+          <!--            <mat-icon style="margin: 0.2rem;" (click)="onRemoveCategory(i)">cancel</mat-icon>-->
+          <!--          </mat-chip>-->
+          <!--        </mat-chip-list>-->
+          <!--      </mat-form-field>-->
+
+        </form>
+        <!--    <form [formGroup]="categoriesform">-->
+        <!--      <mat-form-field class="full-width">-->
+        <!--        <mat-chip-list #chipList formArrayName="items">-->
+        <!--          <mat-chip>-->
+        <!--            Категории-->
+        <!--          </mat-chip>-->
+        <!--          <mat-chip-->
+        <!--            color="primary"-->
+        <!--            selected-->
+        <!--            *ngFor="let tag of categoriesArr.controls; let i = index"-->
+        <!--            [formGroupName]="i">-->
+        <!--            {{tag.value.name}}-->
+        <!--            <mat-icon style="margin: 0.2rem;" (click)="onRemoveCategory(i)">cancel</mat-icon>-->
+        <!--          </mat-chip>-->
+        <!--        </mat-chip-list>-->
+        <!--      </mat-form-field>-->
+        <!--    </form>-->
+
+        <!--    <form [formGroup]="categoriesform">-->
+        <!--      <mat-form-field class="full-width">-->
+        <!--        <mat-chip-list #chipList formArrayName="items">-->
+        <!--          <mat-chip>-->
+        <!--            Текущая категория-->
+        <!--          </mat-chip>-->
+        <!--          <ng-container *ngFor="let tag of categoriesArr.controls; let i = index">-->
+        <!--            <mat-chip>-->
+        <!--              <span> -> </span>-->
+        <!--            </mat-chip>-->
+        <!--            <mat-chip-->
+        <!--              color="primary"-->
+        <!--              selected-->
+        <!--              [formGroupName]="i">-->
+        <!--              {{tag.value.name}}-->
+        <!--              <mat-icon style="margin: 0.2rem;" (click)="onRemoveCategory(i)">cancel</mat-icon>-->
+        <!--            </mat-chip>-->
+        <!--          </ng-container>-->
+        <!--        </mat-chip-list>-->
+        <!--      </mat-form-field>-->
+        <!--    </form>-->
+      </ng-template>
+
+    </mat-expansion-panel>
 
     <mat-form-field class="full-width">
       <mat-label>Бренд</mat-label>
@@ -29,9 +121,19 @@
       <mat-label>Модель</mat-label>
       <input formControlName="model" matInput >
     </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Описание</mat-label>
+      <input formControlName="model" matInput >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Характеристики</mat-label>
+      <input formControlName="model" matInput >
+    </mat-form-field>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Закрыть</button>
-  <button mat-button (click)="onSubmitClick()">Создать</button>
+<mat-dialog-actions align="start">
+  <button mat-button color="warn" mat-dialog-close style="width: 20%">Закрыть</button>
+  <button mat-button color="primary" (click)="onSubmitClick()" style="width: 70%">Создать</button>
 </mat-dialog-actions>

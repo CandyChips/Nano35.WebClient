@@ -49,12 +49,17 @@ export class StorageService {
     return this.http.post<any>(dest, data);
   }
 
-  getSubCategoriesById(id: Guid, instanceId: Guid) : Observable<any> {
-    return this.http.get<any>("http://localhost:5103/articles/getCategories?instanceid=" + instanceId + "&id=" + id.toString());
+  getSubCategoriesById(parentId: Guid, instanceId: Guid) : Observable<any> {
+    let dest = "http://localhost:5103/Articles/GetAllArticleCategories?instanceid=" + instanceId;
+    if(parentId != Guid.createEmpty())
+    {
+      dest += "&parentId=" + parentId.toString();
+    }
+    return this.http.get<any>(dest);
   }
 
   getRootCategories(instanceId: Guid) : Observable<any> {
-    return this.http.get<any>("http://localhost:5103/articles/getCategories?instanceid=" + instanceId);
+    return this.http.get<any>("http://localhost:5103/articles/GetAllArticleCategories?instanceid=" + instanceId);
   }
 
   createSubCategories(data: any) : Observable<any> {
