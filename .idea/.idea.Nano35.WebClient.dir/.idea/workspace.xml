@@ -12,15 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="508fc034-e672-44f4-9d9f-00bcb8000799" name="Default Changelist" comment="Added identity module">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Nano35.WebClient.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Nano35.WebClient.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/services/storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/services/storage.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +53,6 @@
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-view/comings-view-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-insatnce.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.scss" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-insatnce.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/modules/instances/instance-routing.module.ts" />
@@ -84,13 +80,14 @@
       <option value="$PROJECT_DIR$/WebClient/src/app/components/app/home/home.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/services/storage.service.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/app/test/test.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" />
     </changedPaths>
   </component>
   <component name="KubernetesApiPersistence">
@@ -160,7 +157,8 @@
       <workItem from="1612343180085" duration="23439000" />
       <workItem from="1612433140122" duration="16851000" />
       <workItem from="1612518214187" duration="1252000" />
-      <workItem from="1612520724794" duration="16312000" />
+      <workItem from="1612520724794" duration="16356000" />
+      <workItem from="1612772676561" duration="8242000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed angular material">
       <created>1611679681447</created>
@@ -225,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612459703543</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="123">
+      <created>1612550903435</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1612550903435</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +260,7 @@
     <MESSAGE value="Fixed add components of article and storageitem" />
     <MESSAGE value="Some fixes" />
     <MESSAGE value="Finaled categories component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finaled categories component" />
+    <MESSAGE value="123" />
+    <option name="LAST_COMMIT_MESSAGE" value="123" />
   </component>
 </project>

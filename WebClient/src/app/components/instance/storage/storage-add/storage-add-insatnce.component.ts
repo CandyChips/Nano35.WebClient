@@ -20,6 +20,7 @@ export class StorageInstanceAddComponent {
   error = "";
   conditions: any;
   articles: any;
+  images = [];
 
   constructor(
     public dialog: MatDialog,
@@ -80,8 +81,28 @@ export class StorageInstanceAddComponent {
         [
           Validators.required
         ]
-      ]
+      ],
+      file: ['', [Validators.required]],
+
+      fileSource: ['', [Validators.required]]
     });
+  }
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      this.images = [];
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+        reader.onload = (event:any) => {
+          // @ts-ignore
+          this.images.push(event.target.result);
+          this.form.patchValue({
+            fileSource: this.images
+          });
+        }
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
   }
 
   updateContent() {

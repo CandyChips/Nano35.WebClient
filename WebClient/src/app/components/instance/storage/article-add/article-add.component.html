@@ -37,10 +37,10 @@
                   </mat-label>
                   <mat-select>
                     <mat-option disabled="true">
-                  <span style="display: flex">
-                    <input matInput placeholder="Устройства etc" formControlName="name" (keydown)="handleInput($event)">
-                    <button mat-button color="primary" (click)="onCreateCategory()">Добавить категорию</button>
-                  </span>
+                      <span style="display: flex">
+                        <input matInput placeholder="Устройства etc" formControlName="name" (keydown)="handleInput($event)">
+                        <button mat-button color="primary" (click)="onCreateCategory()">Добавить категорию</button>
+                      </span>
                       <mat-divider></mat-divider>
                     </mat-option>
                     <mat-option *ngFor="let tag of filteredAllCategories | async" (click)="onSelectCategory(tag)">
@@ -51,65 +51,8 @@
               </form>
             </mat-list-item>
           </mat-list>
-
-          <!--      <mat-form-field class="full-width">-->
-          <!--        <mat-chip-list #chipList formArrayName="items">-->
-          <!--          <mat-chip>-->
-          <!--            Категории-->
-          <!--          </mat-chip>-->
-          <!--          <mat-chip-->
-          <!--            color="primary"-->
-          <!--            selected-->
-          <!--            *ngFor="let tag of categoriesArr.controls; let i = index"-->
-          <!--            [formGroupName]="i">-->
-          <!--            {{tag.value.name}}-->
-          <!--            <mat-icon style="margin: 0.2rem;" (click)="onRemoveCategory(i)">cancel</mat-icon>-->
-          <!--          </mat-chip>-->
-          <!--        </mat-chip-list>-->
-          <!--      </mat-form-field>-->
-
         </form>
-        <!--    <form [formGroup]="categoriesform">-->
-        <!--      <mat-form-field class="full-width">-->
-        <!--        <mat-chip-list #chipList formArrayName="items">-->
-        <!--          <mat-chip>-->
-        <!--            Категории-->
-        <!--          </mat-chip>-->
-        <!--          <mat-chip-->
-        <!--            color="primary"-->
-        <!--            selected-->
-        <!--            *ngFor="let tag of categoriesArr.controls; let i = index"-->
-        <!--            [formGroupName]="i">-->
-        <!--            {{tag.value.name}}-->
-        <!--            <mat-icon style="margin: 0.2rem;" (click)="onRemoveCategory(i)">cancel</mat-icon>-->
-        <!--          </mat-chip>-->
-        <!--        </mat-chip-list>-->
-        <!--      </mat-form-field>-->
-        <!--    </form>-->
-
-        <!--    <form [formGroup]="categoriesform">-->
-        <!--      <mat-form-field class="full-width">-->
-        <!--        <mat-chip-list #chipList formArrayName="items">-->
-        <!--          <mat-chip>-->
-        <!--            Текущая категория-->
-        <!--          </mat-chip>-->
-        <!--          <ng-container *ngFor="let tag of categoriesArr.controls; let i = index">-->
-        <!--            <mat-chip>-->
-        <!--              <span> -> </span>-->
-        <!--            </mat-chip>-->
-        <!--            <mat-chip-->
-        <!--              color="primary"-->
-        <!--              selected-->
-        <!--              [formGroupName]="i">-->
-        <!--              {{tag.value.name}}-->
-        <!--              <mat-icon style="margin: 0.2rem;" (click)="onRemoveCategory(i)">cancel</mat-icon>-->
-        <!--            </mat-chip>-->
-        <!--          </ng-container>-->
-        <!--        </mat-chip-list>-->
-        <!--      </mat-form-field>-->
-        <!--    </form>-->
       </ng-template>
-
     </mat-expansion-panel>
 
     <mat-form-field class="full-width">
@@ -122,14 +65,48 @@
       <input formControlName="model" matInput >
     </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Описание</mat-label>
-      <input formControlName="model" matInput >
-    </mat-form-field>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Характеристики
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <span>
+          <form [formGroup]="specForm">
+            <mat-form-field style="width: 30%">
+              <mat-label>Название</mat-label>
+              <span style="display: flex">
+                <input formControlName="key" matInput >
+              </span>
+            </mat-form-field>
+            <span>: </span>
+            <mat-form-field style="width: 30%">
+              <mat-label>Значение</mat-label>
+              <span style="display: flex">
+                <input formControlName="value" matInput >
+              </span>
+            </mat-form-field>
+            <button mat-button color="primary" style="width: 20%" (click)="onCreateSpec()">Добавить характеристику</button>
+          </form>
+        </span>
+        <mat-divider></mat-divider>
+        <mat-list role="list">
+          <mat-list-item role="listitem"
+                         *ngFor="let tag of spcsArr.controls; let i = index"
+                         [formGroupName]="i">
+            <mat-divider></mat-divider>
+            <span>{{i + 1}}. {{tag.value.key}} - {{tag.value.value}}</span>
+          </mat-list-item>
+        </mat-list>
+
+      </ng-template>
+    </mat-expansion-panel>
 
     <mat-form-field class="full-width">
-      <mat-label>Характеристики</mat-label>
-      <input formControlName="model" matInput >
+      <mat-label>Описание</mat-label>
+      <textarea  style="height: 3rem"  formControlName="model" matInput ></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>

@@ -26,18 +26,30 @@
 
     <mat-form-field class="full-width">
       <mat-label>Доп информация</mat-label>
-      <input formControlName="hiddenComment" matInput >
+      <input formControlName="hiddenComment" matInput>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Цена в закупе</mat-label>
-      <input formControlName="retailPrice" matInput >
+      <input formControlName="retailPrice" matInput>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Цена продажи</mat-label>
-      <input formControlName="purchasePrice" matInput >
+      <input formControlName="purchasePrice" matInput>
     </mat-form-field>
+
+    <div class="example-full-width">
+
+      <input
+        formControlName="file"
+        id="file"
+        type="file"
+        class="form-control"
+        multiple=""
+        accept="image/*"
+        (change)="onFileChange($event)">
+    </div>
 
     <button mat-raised-button
             (click)="onSubmin()"

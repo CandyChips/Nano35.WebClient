@@ -17,6 +17,8 @@ import {Observable} from "rxjs";
 export class ArticleAddDialogComponent {
   categoriesform!: FormGroup;
   categoryForm!: FormGroup;
+  specForm!: FormGroup;
+  specsForm!: FormGroup;
   allCategories: {id: Guid, name: string, parentCategoryId : Guid}[] = [];
   filteredAllCategories: Observable<any[]> | undefined;
 
@@ -43,10 +45,20 @@ export class ArticleAddDialogComponent {
       items: this.formBuilder.array([])
     });
 
+    this.specsForm = this.formBuilder.group({
+      items: this.formBuilder.array([])
+    });
+
     this.categoryForm = this.formBuilder.group({
-      name: [
-        ""
-      ]
+      name:
+        ["",[Validators.required]],
+    });
+
+    this.specForm = this.formBuilder.group({
+      key:
+        ["",[Validators.required]],
+      value:
+        ["",[Validators.required]],
     });
     this.form = this.formBuilder.group({
       newId:
@@ -88,6 +100,10 @@ export class ArticleAddDialogComponent {
     return this.categoriesform.get('items') as FormArray;
   }
 
+  get spcsArr() {
+    return this.categoriesform.get('items') as FormArray;
+  }
+
   onCreateCategory() {
     this.allCategories = [];
     let parent = this.categoriesArr.length == 0 ?
@@ -107,6 +123,14 @@ export class ArticleAddDialogComponent {
       });
     })
   }
+
+  onCreateSpec(){
+    this.spcsArr.push(
+      this.formBuilder.group(this.specForm.value)
+    );
+    this.specForm.reset();
+  }
+
 
   onSelectCategory(tag: any) {
     this.allCategories = [];
