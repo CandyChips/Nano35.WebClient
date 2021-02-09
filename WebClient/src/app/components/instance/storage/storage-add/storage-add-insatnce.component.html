@@ -1,63 +1,53 @@
 <div class="content-width" *ngIf="!isLoading">
-  <h1>Добавить товар</h1>
-  <form [formGroup]="form">
-    <mat-form-field class="full-width" >
-      <mat-label>Наименование</mat-label>
-      <mat-select
-        formControlName="articleId">
-        <mat-option disabled>
-          <button mat-button class="full-width" color="primary" (click)="openAddArticleDialog()">Создать</button>
-        </mat-option>
-        <mat-divider></mat-divider>
-        <mat-option *ngFor="let item of articles" [value]="item.id">
-          {{item.category}} {{item.categoryGroup}} {{item.brand}} {{item.model}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="full-width" >
-      <mat-label>Состояние</mat-label>
-      <mat-select
-        formControlName="conditionId">
-        <mat-option *ngFor="let item of conditions" [value]="item.id">
-          {{item.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <h2 mat-dialog-title>Добавить товар</h2>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="form">
+      <mat-form-field class="full-width" >
+        <mat-label>Наименование</mat-label>
+        <mat-select
+          formControlName="articleId">
+          <mat-option disabled>
+            <button mat-button class="full-width" color="primary" (click)="openAddArticleDialog()">Создать</button>
+          </mat-option>
+          <mat-divider></mat-divider>
+          <mat-option *ngFor="let item of articles" [value]="item.id">
+            {{item.category}} {{item.categoryGroup}} {{item.brand}} {{item.model}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="full-width" >
+        <mat-label>Состояние</mat-label>
+        <mat-select
+          formControlName="conditionId">
+          <mat-option *ngFor="let item of conditions" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Доп информация</mat-label>
-      <input formControlName="hiddenComment" matInput>
-    </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Доп информация</mat-label>
+        <input formControlName="hiddenComment" matInput>
+      </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Цена в закупе</mat-label>
-      <input formControlName="retailPrice" matInput>
-    </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Цена в закупе</mat-label>
+        <input formControlName="retailPrice" matInput>
+      </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Цена продажи</mat-label>
-      <input formControlName="purchasePrice" matInput>
-    </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Цена продажи</mat-label>
+        <input formControlName="purchasePrice" matInput>
+      </mat-form-field>
 
-    <div class="example-full-width">
-
-      <input
-        formControlName="file"
-        id="file"
-        type="file"
-        class="form-control"
-        multiple=""
-        accept="image/*"
-        (change)="onFileChange($event)">
-    </div>
-
-    <button mat-raised-button
-            (click)="onSubmin()"
-            class="full-width"
-            color="primary">
-      Создать
-    </button>
-  </form>
+      <input #file type="file" multiple (change)="uploadFile(file.files)" />
+      <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">{{progress}}%</span>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="start">
+    <button mat-button color="warn" mat-dialog-close style="width: 20%">Закрыть</button>
+    <button mat-button color="primary" (click)="onSubmin()" style="width: 70%">Создать</button>
+  </mat-dialog-actions>
 </div>
 <div class="content-width" *ngIf="isLoading">
   <h1>Загрузка</h1>

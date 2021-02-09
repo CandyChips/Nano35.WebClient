@@ -1,7 +1,8 @@
-<mat-expansion-panel hideToggle>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Категория
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-</mat-expansion-panel>
+<input #file type="file" multiple (change)="upload(file.files)" />
+<span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
+  {{progress}}%
+</span>
+
+<span style="font-weight:bold;color:green;" *ngIf="message">
+  {{message}}
+</span>

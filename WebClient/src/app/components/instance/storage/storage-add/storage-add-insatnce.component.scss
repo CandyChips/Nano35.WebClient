@@ -5,13 +5,3 @@
 .error {
   color: indianred;
 }
-
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.content-width {
-  width: 35rem;
-}

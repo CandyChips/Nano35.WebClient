@@ -31,9 +31,14 @@ export class StorageService {
     return this.http.get<any>(dest);
   }
 
-  getAllArticleTypes(): Observable<any> {
-    let dest = "http://localhost:5103/Articles/GetAllArticleTypes";
+  getAllArticleBrands(instanceId: Guid, categoryId: Guid): Observable<any> {
+    let dest = "http://localhost:5103/Articles/GetAllArticleBrands?instanceId=" + instanceId + "&categoryId=" + categoryId;
 
+    return this.http.get<any>(dest);
+  }
+
+  getAllArticleModels(instanceId: Guid, categoryId: Guid): Observable<any> {
+    let dest = "http://localhost:5103/Articles/GetAllArticleModels?instanceId=" + instanceId + "&categoryId=" + categoryId;
     return this.http.get<any>(dest);
   }
 

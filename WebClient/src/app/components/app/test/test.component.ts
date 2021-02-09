@@ -1,54 +1,7 @@
 import {Component} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpEventType, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {Guid} from "guid-typescript";
-import {NestedTreeControl} from "@angular/cdk/tree";
-import {MatTreeNestedDataSource} from "@angular/material/tree";
 
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
-
-
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Запчасти и комплектующие',
-    children: [
-      {name: 'Apple'},
-      {name: 'Banana'},
-      {name: 'Fruit loops'},
-    ]
-  },
-  {
-    name: 'Устройства',
-    children: [
-      {name: 'Apple'},
-      {name: 'Banana'},
-      {name: 'Fruit loops'},
-    ]
-  }, {
-    name: 'Аксесуары',
-    children: [
-      {
-        name: 'Green',
-        children: [
-          {name: 'Broccoli'},
-          {name: 'Brussels sprouts'},
-        ]
-      }, {
-        name: 'Orange',
-        children: [
-          {name: 'Pumpkins'},
-          {name: 'Carrots'},
-        ]
-      },
-    ]
-  },
-];
 
 @Component({
   selector: 'app-test',
@@ -56,12 +9,35 @@ const TREE_DATA: FoodNode[] = [
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
-  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<FoodNode>();
-
-  constructor() {
-    this.dataSource.data = TREE_DATA;
+  public progress!: number;
+  public message!: string;
+  private id!: Guid;
+  constructor(private http: HttpClient) {
+    this.id = Guid.create();
   }
 
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  upload(files: any) {
+    if (files.length === 0)
+      return;
+    const formData = new FormData();
+    for (let file of files)
+      formData.append(file.name, file);
+    const uploadReq = new HttpRequest(
+      'POST',
+      `http://localhost:5005/images/CreateStorageItemImage`,
+      formData, {
+        reportProgress: true,
+        headers: new HttpHeaders({id: this.id.toString()})
+      });
+    this.http.request(uploadReq).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress)
+        { // @ts-ignore
+          this.progress = Math.round(100 * event.loaded / event.total);
+        }
+      else if (event.type === HttpEventType.Response)
+        { // @ts-ignore
+          this.message = event.body.toString();
+        }
+    });
+  }
 }

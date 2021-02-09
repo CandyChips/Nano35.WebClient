@@ -8,6 +8,7 @@ import {Guid} from "guid-typescript";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ArticleAddDialogComponent} from "../article-add/article-add.component";
 import {StorageService} from "../../../../services/storage.service";
+import {HttpClient, HttpEventType, HttpHeaders, HttpRequest} from "@angular/common/http";
 
 @Component({
   selector: 'app-insatnce-storage-add',
@@ -21,8 +22,12 @@ export class StorageInstanceAddComponent {
   conditions: any;
   articles: any;
   images = [];
+  public progress!: number;
+  public message!: string;
+  private id!: Guid;
 
   constructor(
+    private http: HttpClient,
     public dialog: MatDialog,
     private tokenService: TokenService,
     private identityService: IdentityService,
@@ -87,22 +92,30 @@ export class StorageInstanceAddComponent {
       fileSource: ['', [Validators.required]]
     });
   }
-  onFileChange(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      var filesAmount = event.target.files.length;
-      this.images = [];
-      for (let i = 0; i < filesAmount; i++) {
-        var reader = new FileReader();
-        reader.onload = (event:any) => {
-          // @ts-ignore
-          this.images.push(event.target.result);
-          this.form.patchValue({
-            fileSource: this.images
-          });
-        }
-        reader.readAsDataURL(event.target.files[i]);
+
+  uploadFile(files: any) {
+    if (files.length === 0)
+      return;
+    const formData = new FormData();
+    for (let file of files)
+      formData.append(file.name, file);
+    const uploadReq = new HttpRequest(
+      'POST',
+      `http://localhost:5005/images/CreateStorageItemImage`,
+      formData, {
+        reportProgress: true,
+        headers: new HttpHeaders({id: this.form.controls.newId.toString()})
+      });
+    this.http.request(uploadReq).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress)
+      { // @ts-ignore
+        this.progress = Math.round(100 * event.loaded / event.total);
       }
-    }
+      else if (event.type === HttpEventType.Response)
+      { // @ts-ignore
+        this.message = event.body.toString();
+      }
+    });
   }
 
   updateContent() {
