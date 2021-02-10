@@ -2,19 +2,10 @@
   <h2 mat-dialog-title>Добавить товар</h2>
   <mat-dialog-content class="mat-typography">
     <form [formGroup]="form">
-      <mat-form-field class="full-width" >
-        <mat-label>Наименование</mat-label>
-        <mat-select
-          formControlName="articleId">
-          <mat-option disabled>
-            <button mat-button class="full-width" color="primary" (click)="openAddArticleDialog()">Создать</button>
-          </mat-option>
-          <mat-divider></mat-divider>
-          <mat-option *ngFor="let item of articles" [value]="item.id">
-            {{item.category}} {{item.categoryGroup}} {{item.brand}} {{item.model}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <app-select-article
+        (loaded)="this.loaded.emit($event)"
+        (dataChanged)="articleIdChange($event)">
+      </app-select-article>
       <mat-form-field class="full-width" >
         <mat-label>Состояние</mat-label>
         <mat-select

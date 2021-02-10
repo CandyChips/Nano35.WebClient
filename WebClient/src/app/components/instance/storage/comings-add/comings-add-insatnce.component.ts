@@ -17,6 +17,8 @@ import {ClientsService} from "../../../../services/clients.service";
 export class ComingsAddInsatnceComponent {
   form!: FormGroup;
 
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
   isLoading = false;
 
   error = "";
@@ -74,6 +76,7 @@ export class ComingsAddInsatnceComponent {
   }
 
   addDetails(data: any) {
+    console.log(data);
     this.spcsArr.push(
       this.formBuilder.group(data)
     );

@@ -2,7 +2,8 @@
 <form [formGroup]="form">
   <mat-form-field class="full-width">
     <mat-label>Номер оприходования</mat-label>
-    <input formControlName="number" matInput>
+    <input matInput
+           formControlName="number" >
   </mat-form-field>
   <app-select-client
     (loaded)="isLoading = $event"
@@ -10,22 +11,12 @@
   </app-select-client>
   <mat-form-field class="full-width">
     <mat-label>Комментарий</mat-label>
-    <input formControlName="comment" matInput>
+    <input matInput
+           formControlName="comment" >
   </mat-form-field>
-  <mat-list role="list">
-    <ng-container *ngIf="spcsArr.length == 0">
-      <mat-list-item role="listitem">
-        <span>Нет оприходуемых изделий</span>
-      </mat-list-item>
-    </ng-container>
-    <ng-container *ngIf="spcsArr.length != 0">
-      <mat-list-item role="listitem"
-        *ngFor="let item of spcsArr.controls; let i = index"
-        [formGroupName]="i" >
-        <span>{{item.value.stringItemId}} </span>
-      </mat-list-item>
-    </ng-container>
-  </mat-list>
+
+  <!-- coming details -->
+
   <app-build-coming-detail
     (loaded)="isLoading = $event"
     (dataChanged)="addDetails($event)">

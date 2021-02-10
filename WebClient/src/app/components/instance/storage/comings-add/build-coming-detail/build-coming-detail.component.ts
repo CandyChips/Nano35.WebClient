@@ -28,6 +28,28 @@ export class BuildComingDetailComponent {
     private formBuilder: FormBuilder,
     private storageService: StorageService) {
 
+    this.form = this.formBuilder.group({
+      newId: [
+        Guid.create().toString(),
+        [Validators.required]
+      ],
+      storageItemId: [
+        this.tokenService.currentInstanceId,
+        [Validators.required]
+      ],
+      placeOnStorage: [
+        "",
+        [Validators.required]
+      ],
+      count: [
+        "",
+        [Validators.required]
+      ],
+      price: [
+        "",
+        [Validators.required]
+      ]
+    });
     this.storageService.getAllStorageItems(this.tokenService.currentInstanceId)
       .subscribe((success: any) => {
         this.items = success;
@@ -36,28 +58,6 @@ export class BuildComingDetailComponent {
           map(value =>
             this.items.filter((option: any) => (option.model.toLowerCase() + " " + option.brand.toLowerCase()).includes(value.toLowerCase()))
           ));
-        this.form = this.formBuilder.group({
-          newId: [
-            Guid.create().toString(),
-            [Validators.required]
-          ],
-          storageItemId: [
-            this.tokenService.currentInstanceId,
-            [Validators.required]
-          ],
-          placeOnStorage: [
-            "",
-            [Validators.required]
-          ],
-          count: [
-            "",
-            [Validators.required]
-          ],
-          price: [
-            "",
-            [Validators.required]
-          ]
-        });
         this.loaded.emit(false);
         this.itemSelectControl.valueChanges.subscribe((data: any) => {
           console.log(data);

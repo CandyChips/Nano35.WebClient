@@ -122,8 +122,18 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="start">
-    <button mat-button color="warn" mat-dialog-close style="width: 20%">Закрыть</button>
-    <button mat-button color="primary" (click)="onSubmitClick()" style="width: 70%">Создать</button>
+    <button mat-button
+            color="warn"
+            mat-dialog-close
+            style="width: 20%">
+      Закрыть
+    </button>
+    <button mat-button
+            color="primary"
+            (click)="onSubmitClick()"
+            style="width: 70%">
+      Создать
+    </button>
   </mat-dialog-actions>
 </div>
 <div class="content-width" *ngIf="isLoading">
