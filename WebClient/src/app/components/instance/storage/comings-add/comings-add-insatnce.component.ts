@@ -1,16 +1,13 @@
 import {Component, Inject} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenService} from "../../../../services/token.service";
 import {IdentityService} from "../../../../services/identity.service";
 import {Router} from "@angular/router";
 import {UnitsService} from "../../../../services/units.service";
 import {Guid} from "guid-typescript";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ArticleAddDialogComponent} from "../article-add/article-add.component";
 import {StorageService} from "../../../../services/storage.service";
 import {ClientsService} from "../../../../services/clients.service";
-import {map, startWith} from "rxjs/operators";
-import {ClientsAddDialogComponent} from "../../clients/clients-add/clients-add.component";
 
 @Component({
   selector: 'app-insatnce-comings-add',
@@ -19,14 +16,10 @@ import {ClientsAddDialogComponent} from "../../clients/clients-add/clients-add.c
 })
 export class ComingsAddInsatnceComponent {
   form!: FormGroup;
-  isLoading = true;
+
+  isLoading = false;
+
   error = "";
-  clients: any;
-  filteredClients: any;
-
-  units: any;
-
-  clientFilterControl = new FormControl();
 
   constructor(
     public dialog: MatDialog,
@@ -39,108 +32,53 @@ export class ComingsAddInsatnceComponent {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ComingsAddInsatnceComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.clientService.getAllClients(this.tokenService.currentInstanceSubject.value.id).subscribe(
-      (success: any) => {
-        this.clients = success;
-
-        this.filteredClients = this.clientFilterControl.valueChanges.pipe(
-          startWith(''),
-          map(value =>
-            this.clients.filter((option: any) => ("+7" + option.phone.toLowerCase() + " " + option.name.toLowerCase()).includes(value.toLowerCase()))
-          )
-        );
-        this.unitsService.getAllUnits(this.tokenService.currentInstanceSubject.value.id, Guid.createEmpty()).subscribe(
-          (success: any) => {
-            this.units = success;
-          },
-          (error: any) => {
-
-        })
-        this.isLoading = false;
-      },
-      (error: any) => {
-
-      });
     this.form = this.formBuilder.group({
       newId: [
         Guid.create().toString(),
-        [
-          Validators.required
-        ]
+        [Validators.required]
       ],
       instanceId: [
-        this.tokenService.currentInstanceSubject.value.id,
-        [
-          Validators.required
-        ]
-      ],
-      сlientId: [
-        "",
-        [
-          Validators.required
-        ]
-      ],
-      number: [
-        "",
-        [
-          Validators.required
-        ]
+        this.tokenService.currentInstanceId,
+        [Validators.required]
       ],
       unitId: [
         "",
-        [
-          Validators.required
-        ]
+        [Validators.required]
+      ],
+      number: [
+        "",
+        [Validators.required]
       ],
       comment: [
         "",
-        [
-          Validators.required
-        ]
-      ]
+        [Validators.required]
+      ],
+      clientId: [
+        "",
+        [Validators.required]
+      ],
+      details: this.formBuilder.array([])
     });
   }
 
-  updateContent() {
-    this.isLoading = false;
+  logEvent(data: any) {
+    console.log(data);
   }
 
-  openAddArticleDialog(): void {
-    const dialogRef = this.dialog.open(ArticleAddDialogComponent, {
-      width: '600px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.updateContent();
-      console.log(`Dialog result: ${result}`);
-    });
+  get spcsArr() {
+    return this.form.get('details') as FormArray;
   }
 
   handleInput(event: KeyboardEvent): void{
     event.stopPropagation();
   }
 
-  openAddClientDialog() {
-    const dialogRef = this.dialog.open(ClientsAddDialogComponent, {
-      width: '600px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.clientService.getAllClients(this.tokenService.currentInstanceSubject.value.id).subscribe(
-        (success: any) => {
-          this.clients = success;
+  addDetails(data: any) {
+    this.spcsArr.push(
+      this.formBuilder.group(data)
+    );
 
-          this.filteredClients = this.clientFilterControl.valueChanges.pipe(
-            startWith(''),
-            map(value =>
-              this.clients.filter((option: any) => ("+7" + option.phone.toLowerCase() + " " + option.name.toLowerCase()).includes(value.toLowerCase()))
-            )
-          );
-        },
-        (error: any) => {
-
-        });
-      console.log(`Dialog result: ${result}`);
-    });
-
+    console.log(this.spcsArr.controls)
   }
 
   onSubmin() {

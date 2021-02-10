@@ -37,7 +37,7 @@ export class InstancesComponent implements OnInit {
   }
 
   selectInstance(instance: any){
-    this.tokenService.currentInstanceSubject.next(instance);
+    this.tokenService.currentTokenSubject.next(instance);
     this.router.navigate(["/instance"]);
   }
 

@@ -1,0 +1,18 @@
+<mat-form-field class="full-width">
+  <mat-label>Поставщик</mat-label>
+  <mat-select [formControl]="selectArticleControl">
+    <mat-option disabled>
+          <span style="display: flex">
+            <input placeholder="Поиск" matInput value="{{ this.articleFilterControl.value }}"
+                   (keydown)="handleInput($event)"
+                   [formControl]="articleFilterControl"/>
+            <button (click)="openAddClientDialog()" mat-raised-button matSuffix type="button" color="primary">
+                Новый поставщик
+            </button>
+          </span>
+    </mat-option>
+    <mat-option *ngFor="let item of filteredArticles | async" [value]="item.id">
+      +7{{item.phone}} {{item.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

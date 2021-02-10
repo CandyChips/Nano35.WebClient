@@ -24,7 +24,7 @@ export class UnitsInstanceViewComponent implements OnInit {
   }
 
   load() {
-    this.unitsService.getAllUnits(this.tokenService.currentInstanceSubject.value.id, Guid.createEmpty()).subscribe((data: any) => {
+    this.unitsService.getAllUnits(this.tokenService.currentInstanceId, Guid.createEmpty()).subscribe((data: any) => {
       this.units = data;
       console.log(this.units);
     })

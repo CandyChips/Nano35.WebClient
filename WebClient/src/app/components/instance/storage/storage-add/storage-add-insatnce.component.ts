@@ -46,7 +46,7 @@ export class StorageInstanceAddComponent {
         ]
       ],
       instanceId: [
-        this.tokenService.currentInstanceSubject.value.id,
+        this.tokenService.currentInstanceId,
         [
           Validators.required
         ]
@@ -104,7 +104,7 @@ export class StorageInstanceAddComponent {
       `http://localhost:5005/images/CreateStorageItemImage`,
       formData, {
         reportProgress: true,
-        headers: new HttpHeaders({id: this.form.controls.newId.toString()})
+        headers: new HttpHeaders({id: this.form.controls.newId.value.toString()})
       });
     this.http.request(uploadReq).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
@@ -121,7 +121,7 @@ export class StorageInstanceAddComponent {
   updateContent() {
     this.storageService.getAllStorageItemConditions().subscribe((success: any) => {
       this.conditions = success;
-      this.storageService.getAllArticles(this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+      this.storageService.getAllArticles(this.tokenService.currentInstanceId).subscribe((success: any) => {
         this.articles = success;
         this.isLoading = false;
       })

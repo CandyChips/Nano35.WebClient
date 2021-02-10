@@ -37,7 +37,7 @@ export class UnitsInstanceAddComponent {
         ]
       ],
       instanceId: [
-        this.tokenService.currentInstanceSubject.value.id,
+        this.tokenService.currentInstanceId,
         [
           Validators.required
         ]

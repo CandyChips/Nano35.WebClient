@@ -19,7 +19,7 @@ export class ClientsViewInsatnceComponent implements OnInit {
     private router: Router,
     private tokenService: TokenService,
     private clientsService: ClientsService) {
-    this.clientsService.getAllClients(this.tokenService.currentInstanceSubject.value.id).subscribe(
+    this.clientsService.getAllClients(this.tokenService.currentInstanceId).subscribe(
       (success: any) => {
         this.clients = success;
       },

@@ -1,55 +1,40 @@
-<div class="content-width" *ngIf="!isLoading">
-  <h1>Новое оприходование</h1>
-  <form [formGroup]="form">
-
-    <mat-form-field class="full-width">
-      <mat-label>Номер оприходования</mat-label>
-      <input formControlName="number" matInput>
-    </mat-form-field>
-
-    <mat-form-field class="full-width">
-      <mat-label>Поставщик</mat-label>
-      <mat-select formControlName="сlientId">
-        <mat-option disabled>
-          <span style="display: flex">
-            <input placeholder="Клиент" matInput value="{{ this.clientFilterControl.value }}"
-                  (keydown)="handleInput($event)"
-                   [formControl]="clientFilterControl"/>
-            <button (click)="openAddClientDialog()" mat-raised-button matSuffix type="button" color="primary">
-                Новый поставщик
-            </button>
-          </span>
-        </mat-option>
-        <mat-option *ngFor="let item of filteredClients | async" [value]="item.id">
-          +7{{item.phone}} {{item.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-<!--    <mat-form-field class="full-width">-->
-<!--      <mat-label>Целевое подразделение</mat-label>-->
-<!--      <mat-select-->
-<!--        formControlName="unitId"-->
-<!--        style="width: 100%;">-->
-<!--        <mat-option *ngFor="let item of units" [value]="item.id">-->
-<!--          +7{{item.phone}} {{item.name}}-->
-<!--        </mat-option>-->
-<!--      </mat-select>-->
-<!--    </mat-form-field>-->
-
-    <mat-form-field class="full-width">
-      <mat-label>Комментарий</mat-label>
-      <input formControlName="comment" matInput>
-    </mat-form-field>
-
-    <button mat-raised-button
-            (click)="onSubmin()"
-            class="full-width"
-            color="primary">
-      Создать
-    </button>
-  </form>
-</div>
-<div class="content-width" *ngIf="isLoading">
-  <h1>Загрузка</h1>
-</div>
+<h1>Новое оприходование</h1>
+<form [formGroup]="form">
+  <mat-form-field class="full-width">
+    <mat-label>Номер оприходования</mat-label>
+    <input formControlName="number" matInput>
+  </mat-form-field>
+  <app-select-client
+    (loaded)="isLoading = $event"
+    (dataChanged)="form.controls.clientId.setValue($event)">
+  </app-select-client>
+  <mat-form-field class="full-width">
+    <mat-label>Комментарий</mat-label>
+    <input formControlName="comment" matInput>
+  </mat-form-field>
+  <mat-list role="list">
+    <ng-container *ngIf="spcsArr.length == 0">
+      <mat-list-item role="listitem">
+        <span>Нет оприходуемых изделий</span>
+      </mat-list-item>
+    </ng-container>
+    <ng-container *ngIf="spcsArr.length != 0">
+      <mat-list-item role="listitem"
+        *ngFor="let item of spcsArr.controls; let i = index"
+        [formGroupName]="i" >
+        <span>{{item.value.stringItemId}} </span>
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+  <app-build-coming-detail
+    (loaded)="isLoading = $event"
+    (dataChanged)="addDetails($event)">
+  </app-build-coming-detail>
+  <br>
+  <button mat-button
+          (click)="onSubmin()"
+          class="full-width"
+          color="primary">
+    Создать
+  </button>
+</form>

@@ -22,6 +22,10 @@ import {ComingsAddInsatnceComponent} from "../../components/instance/storage/com
 import {ClientsInstanceComponent} from "../../components/instance/clients/clients-insatnce.component";
 import {ClientsAddDialogComponent} from "../../components/instance/clients/clients-add/clients-add.component";
 import {ClientsViewInsatnceComponent} from "../../components/instance/clients/clients-view/clients-view-insatnce.component";
+import {BuildComingDetailComponent} from "../../components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component";
+import {SelectStorageItemComponent} from "../../components/instance/storage/comings-add/select-storage-item/select-storage-item.component";
+import {SelectClientComponent} from "../../components/instance/storage/comings-add/select-client/select-client.component";
+import {SelectArticleComponent} from "../../components/instance/storage/comings-add/select-article/select-article.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +51,12 @@ import {ClientsViewInsatnceComponent} from "../../components/instance/clients/cl
     ArticleAddDialogComponent,
     WarehouseViewInsatnceComponent,
     ComingsViewInsatnceComponent,
-    ComingsAddInsatnceComponent
+    ComingsAddInsatnceComponent,
+
+    SelectClientComponent,
+    BuildComingDetailComponent,
+    SelectStorageItemComponent,
+    SelectArticleComponent
   ],
   imports: [
     FormsModule,

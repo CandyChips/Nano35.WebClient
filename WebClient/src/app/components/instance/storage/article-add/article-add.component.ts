@@ -41,7 +41,7 @@ export class ArticleAddDialogComponent {
       newId:
         [Guid.create().toString(),[Validators.required]],
       instanceId:
-        [this.tokenService.currentInstanceSubject.value.id,[Validators.required]],
+        [this.tokenService.currentInstanceId,[Validators.required]],
       categoryId:
         ["",[Validators.required]],
       brand:
@@ -49,9 +49,9 @@ export class ArticleAddDialogComponent {
       model:
         ["",[Validators.required]],
       info:
-        ["",[Validators.required]],
+        [""],
       specs:
-        [null, [Validators.required]]
+        [null]
     });
 
     this.categoryForm = this.formBuilder.group({
@@ -75,7 +75,7 @@ export class ArticleAddDialogComponent {
     });
 
     this.storageService.getRootCategories(
-      this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+      this.tokenService.currentInstanceId).subscribe((success: any) => {
       this.allCategories = success;
       this.filteredAllCategories = this.categoryForm.controls.name.valueChanges.pipe(
         startWith(''),
@@ -90,6 +90,7 @@ export class ArticleAddDialogComponent {
     return array.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
   onSubmitClick(): void {
+    console.log(this.categoriesArr.controls[(this.categoriesArr.length - 1)].value.id)
     this.isLoading = true;
     this.form.controls.categoryId.setValue(this.categoriesArr.at(this.categoriesArr.length - 1).value.id);
     this.form.controls.specs.setValue(this.spcsArr.value);
@@ -97,7 +98,6 @@ export class ArticleAddDialogComponent {
     this.storageService.createArticle(this.form.value).subscribe((success: any) => {
       this.isLoading = false;
       this.dialogRef.close();
-
     }, (error: any) => {
       this.isLoading = false;
       alert(error.error.message)
@@ -125,13 +125,13 @@ export class ArticleAddDialogComponent {
     let parent = this.categoriesArr.length == 0 ?
       Guid.createEmpty().toString() :
       this.categoriesArr.at(this.categoriesArr.length - 1).value.id;
-    let newItem = { instanceId: this.tokenService.currentInstanceSubject.value.id, newId: Guid.create().toString(), name: this.categoryForm.controls.name.value, parentCategoryId: parent };
+    let newItem = { instanceId: this.tokenService.currentInstanceId, newId: Guid.create().toString(), name: this.categoryForm.controls.name.value, parentCategoryId: parent };
     this.storageService.createSubCategories(newItem).subscribe((success: any) => {
       this.categoriesArr.push(this.formBuilder.group(newItem));
       this.categoryForm.controls.name.setValue('');
       this.storageService.getSubCategoriesById(
         this.categoriesArr.at(this.categoriesArr.length - 1).value.id,
-        this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+        this.tokenService.currentInstanceId).subscribe((success: any) => {
         this.allCategories = success;
         this.filteredAllCategories = this.categoryForm.controls.name.valueChanges.pipe(
           startWith(''),
@@ -154,23 +154,23 @@ export class ArticleAddDialogComponent {
       this.formBuilder.group(tag)
     );
     this.storageService.getSubCategoriesById(
-      this.categoriesArr.at(this.categoriesArr.length - 1).value.id,
-      this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+      this.categoriesArr.controls[(this.categoriesArr.length - 1)].value.id,
+      this.tokenService.currentInstanceId).subscribe((success: any) => {
       this.allCategories = success;
       this.filteredAllCategories = this.categoryForm.controls.name.valueChanges.pipe(
         startWith(''),
         map(item => this.allCategories.filter(value => value.name.toLocaleLowerCase().indexOf(item.toLowerCase()) === 0)));
       this.storageService.getAllArticleModels(
-        this.tokenService.currentInstanceSubject.value.id,
-        this.categoriesArr.at(this.categoriesArr.length - 1).value.id).subscribe((success: string[]) => {
+        this.tokenService.currentInstanceId,
+        this.categoriesArr.controls[(this.categoriesArr.length - 1)].value.id).subscribe((success: string[]) => {
         this.models = success;
         this.filteredModels = this.form.controls.model.valueChanges.pipe(
           startWith(''),
           map(value => this._filter(value, this.models))
         );
         this.storageService.getAllArticleBrands(
-          this.tokenService.currentInstanceSubject.value.id,
-          this.categoriesArr.at(this.categoriesArr.length - 1).value.id).subscribe((success: string[]) => {
+          this.tokenService.currentInstanceId,
+          this.categoriesArr.controls[(this.categoriesArr.length - 1)].value.id).subscribe((success: string[]) => {
           this.brands = success;
           this.filteredBrands = this.form.controls.brand.valueChanges.pipe(
             startWith(''),
@@ -190,7 +190,7 @@ export class ArticleAddDialogComponent {
     if(this.categoriesArr.length == 0)
     {
       this.storageService.getRootCategories(
-        this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+        this.tokenService.currentInstanceId).subscribe((success: any) => {
         this.allCategories = success;
         this.filteredAllCategories = this.categoryForm.controls.name.valueChanges.pipe(
           startWith(''),
@@ -201,7 +201,7 @@ export class ArticleAddDialogComponent {
     {
       this.storageService.getSubCategoriesById(
         this.categoriesArr.at(this.categoriesArr.length - 1).value.id,
-        this.tokenService.currentInstanceSubject.value.id).subscribe((success: any) => {
+        this.tokenService.currentInstanceId).subscribe((success: any) => {
         this.allCategories = success;
         this.filteredAllCategories = this.categoryForm.controls.name.valueChanges.pipe(
           startWith(''),

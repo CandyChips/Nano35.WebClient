@@ -42,7 +42,7 @@ export class ClientsAddDialogComponent {
                     ]
                   ],
                   instanceId: [
-                    this.tokenService.currentInstanceSubject.value.id,
+                    this.tokenService.currentInstanceId,
                     [
                       Validators.required
                     ]

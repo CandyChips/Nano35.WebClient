@@ -25,7 +25,7 @@ export class WorkersInstanceViewComponent implements OnInit {
   }
 
   load() {
-    this.workersService.getAllWorkers(Guid.createEmpty(), this.tokenService.currentInstanceSubject.value.id).subscribe((data: any) => {
+    this.workersService.getAllWorkers(Guid.createEmpty(), this.tokenService.currentInstanceId).subscribe((data: any) => {
       this.workers = data;
       console.log(data);
     })

@@ -25,7 +25,7 @@ export class WarehouseViewInsatnceComponent implements OnInit {
   }
 
   load() {
-    this.storageService.getAllStorageItems(this.tokenService.currentInstanceSubject.value.id).subscribe(
+    this.storageService.getAllStorageItems(this.tokenService.currentInstanceId).subscribe(
       (success: any) => {
         this.items = success;
       },

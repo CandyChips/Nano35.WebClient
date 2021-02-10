@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+  <app-select-storage-item
+    (loaded)="this.loaded.emit($event)"
+    (dataChanged)="storageItemIdChange($event)">
+  </app-select-storage-item>
+  <mat-form-field class="full-width">
+    <mat-label>Количество</mat-label>
+    <input formControlName="count" matInput>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Место а складе</mat-label>
+    <input formControlName="placeOnStorage" matInput>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Цена закупа</mat-label>
+    <input formControlName="price" matInput>
+  </mat-form-field>
+  <button mat-button
+          (click)="pushDetail()"
+          class="full-width"
+          color="primary">
+    Добавить к оприходованию
+  </button>
+</form>

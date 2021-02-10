@@ -33,7 +33,7 @@ export class ViewInstancesComponent implements OnInit {
   }
 
   selectInstance(instance: any){
-    this.tokenService.currentInstanceSubject.next(instance);
+    this.tokenService.setCurrentInstance(instance);
     this.router.navigate(["/instance"]);
   }
 }
