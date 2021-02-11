@@ -31,7 +31,8 @@
 
     <mat-form-field class="full-width">
       <mat-label>Контактный номер</mat-label>
-      <input formControlName="phone" matInput >
+      <span matPrefix>+7 &nbsp;</span>
+      <input formControlName="phone" type="tel" matInput placeholder="555-555-1234" >
     </mat-form-field>
 
     <mat-form-field class="full-width">

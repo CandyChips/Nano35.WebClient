@@ -16,11 +16,6 @@ import {ClientsService} from "../../../../services/clients.service";
 })
 export class ComingsAddInsatnceComponent {
   form!: FormGroup;
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-
-  isLoading = false;
-
   error = "";
 
   constructor(
@@ -39,12 +34,12 @@ export class ComingsAddInsatnceComponent {
         Guid.create().toString(),
         [Validators.required]
       ],
-      instanceId: [
+      intsanceId: [
         this.tokenService.currentInstanceId,
         [Validators.required]
       ],
       unitId: [
-        "",
+        "",// ToDo FIXXXXXX
         [Validators.required]
       ],
       number: [
@@ -63,38 +58,35 @@ export class ComingsAddInsatnceComponent {
     });
   }
 
-  logEvent(data: any) {
-    console.log(data);
-  }
-
-  get spcsArr() {
+  get detailsArr() {
     return this.form.get('details') as FormArray;
   }
 
-  handleInput(event: KeyboardEvent): void{
+  handleInput(event: KeyboardEvent) : void {
     event.stopPropagation();
   }
 
   addDetails(data: any) {
     console.log(data);
-    this.spcsArr.push(
+    this.detailsArr.push(
       this.formBuilder.group(data)
     );
+  }
 
-    console.log(this.spcsArr.controls)
+  updateUnit(data: any) {
+    this.form.controls.unitId.setValue(data.id);
+  }
+
+  onRemoveDetail(index: number) {
+    this.detailsArr.removeAt(index);
   }
 
   onSubmin() {
-    this.isLoading = true;
     console.log(this.form.value)
-    //this.storageService.createStorageItem(this.form.value)
-    //  .subscribe(
-    //    (data: any) => {
-    //      this.dialogRef.close();
-    //    },
-    //    (error: any) => {
-    //      this.isLoading = false;
-    //      alert(error.error.message)
-    //    });
+    this.storageService.createComing(this.form.value)
+      .subscribe(
+        (data: any) => {
+          this.dialogRef.close();
+        });
   }
 }

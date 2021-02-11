@@ -2,10 +2,9 @@ import {Component, EventEmitter, Inject, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {map, startWith} from "rxjs/operators";
-import {ClientsService} from "../../../../../services/clients.service";
 import {TokenService} from "../../../../../services/token.service";
-import {ClientsAddDialogComponent} from "../../../clients/clients-add/clients-add.component";
 import {StorageService} from "../../../../../services/storage.service";
+import {ArticleAddDialogComponent} from "../../article-add/article-add.component";
 
 @Component({
   selector: 'app-select-article',
@@ -13,7 +12,6 @@ import {StorageService} from "../../../../../services/storage.service";
   styleUrls: ['./select-article.component.scss']
 })
 export class SelectArticleComponent {
-  @Output() loaded: EventEmitter<any> = new EventEmitter<any>();
   @Output() dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
   articles: any;
@@ -35,10 +33,9 @@ export class SelectArticleComponent {
             startWith(''),
             map(value =>
               this.articles.filter((option: any) =>
-                ("+7" + option.phone.toLowerCase() + " " + option.name.toLowerCase())
+                (option.category.toLowerCase() + " " + option.phone.toLowerCase() + " " + option.name.toLowerCase())
                   .includes(value.toLowerCase()))
             ));
-        this.loaded.emit(false);
         this.selectArticleControl.valueChanges
           .subscribe((data: any) => {
             this.dataChanged.emit(data);
@@ -47,12 +44,8 @@ export class SelectArticleComponent {
       (error: any) => {});
   }
 
-  handleInput(event: KeyboardEvent): void{
-    event.stopPropagation();
-  }
-
   openAddClientDialog() {
-    const dialogRef = this.dialog.open(ClientsAddDialogComponent, {
+    const dialogRef = this.dialog.open(ArticleAddDialogComponent, {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -64,17 +57,19 @@ export class SelectArticleComponent {
                 startWith(''),
                 map(value =>
                   this.articles.filter((option: any) =>
-                    ("+7" + option.phone.toLowerCase() + " " + option.name.toLowerCase())
+                    (option.category.toLowerCase() + " " + option.phone.toLowerCase() + " " + option.name.toLowerCase())
                       .includes(value.toLowerCase()))
                 ));
-            this.loaded.emit(false);
             this.selectArticleControl.valueChanges
               .subscribe((data: any) => {
                 this.dataChanged.emit(data);
               })
           },
           (error: any) => {});
-      console.log(`Dialog result: ${result}`);
     });
+  }
+
+  handleInput(event: KeyboardEvent): void{
+    event.stopPropagation();
   }
 }

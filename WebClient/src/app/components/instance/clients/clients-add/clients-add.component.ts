@@ -37,57 +37,39 @@ export class ClientsAddDialogComponent {
                 this.form = this.formBuilder.group({
                   newId: [
                     Guid.create().toString(),
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   instanceId: [
                     this.tokenService.currentInstanceId,
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   userId: [
                     success.data.id,
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   name: [
                     "",
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   email: [
                     "",
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   phone: [
                     "",
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   clientTypeId: [
                     "",
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   clientStateId: [
                     "",
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ],
                   salle: [
                     0,
-                    [
-                      Validators.required
-                    ]
+                    [Validators.required]
                   ]
                 });
                 this.isLoading = false;

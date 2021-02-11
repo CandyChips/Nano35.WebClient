@@ -12,7 +12,6 @@ import {StorageService} from "../../../../../services/storage.service";
   styleUrls: ['./select-storage-item.component.scss']
 })
 export class SelectStorageItemComponent {
-  @Output() loaded: EventEmitter<any> = new EventEmitter<any>();
   @Output() dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
   items: any;
@@ -36,12 +35,11 @@ export class SelectStorageItemComponent {
               (option.article.model.toLowerCase() + " " + option.article.brand.toLowerCase())
                 .includes(value.toLowerCase()))
           ));
-        this.loaded.emit(false);
-        this.itemSelectControl.valueChanges
-          .subscribe((data: any) => {
-            this.dataChanged.emit(data);
-          })
       });
+    this.itemSelectControl.valueChanges
+      .subscribe((data: any) => {
+        this.dataChanged.emit(data);
+      })
   }
 
   handleInput(event: KeyboardEvent): void{
@@ -60,7 +58,6 @@ export class SelectStorageItemComponent {
           map(value =>
             this.items.filter((option: any) => (option.model.toLowerCase() + " " + option.brand.toLowerCase()).includes(value.toLowerCase()))
           ));
-        this.loaded.emit(false);
       });
     });
   }

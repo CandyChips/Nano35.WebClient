@@ -26,6 +26,8 @@ import {BuildComingDetailComponent} from "../../components/instance/storage/comi
 import {SelectStorageItemComponent} from "../../components/instance/storage/comings-add/select-storage-item/select-storage-item.component";
 import {SelectClientComponent} from "../../components/instance/storage/comings-add/select-client/select-client.component";
 import {SelectArticleComponent} from "../../components/instance/storage/comings-add/select-article/select-article.component";
+import {SelectUnitComponent} from "../../components/instance/storage/comings-add/select-unit/select-unit.component";
+import {SelectCategoryComponent} from "../../components/instance/storage/article-add/select-category/select-category.component";
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {SelectArticleComponent} from "../../components/instance/storage/comings-
     SelectClientComponent,
     BuildComingDetailComponent,
     SelectStorageItemComponent,
-    SelectArticleComponent
+    SelectArticleComponent,
+    SelectUnitComponent,
+    SelectCategoryComponent
   ],
   imports: [
     FormsModule,

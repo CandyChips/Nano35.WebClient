@@ -1,7 +1,6 @@
 <form [formGroup]="form">
   <app-select-storage-item
-    (loaded)="this.loaded.emit($event)"
-    (dataChanged)="storageItemIdChange($event)">
+    (dataChanged)="storageItemChanged($event)">
   </app-select-storage-item>
   <mat-form-field class="full-width">
     <mat-label>Количество</mat-label>
@@ -16,6 +15,7 @@
     <input formControlName="price" matInput>
   </mat-form-field>
   <button mat-button
+          [disabled]="form.invalid"
           (click)="pushDetail()"
           class="full-width"
           color="primary">

@@ -6,7 +6,6 @@
            formControlName="number" >
   </mat-form-field>
   <app-select-client
-    (loaded)="isLoading = $event"
     (dataChanged)="form.controls.clientId.setValue($event)">
   </app-select-client>
   <mat-form-field class="full-width">
@@ -15,10 +14,29 @@
            formControlName="comment" >
   </mat-form-field>
 
-  <!-- coming details -->
+  <app-select-unit
+    (dataChanged)="updateUnit($event)">
+  </app-select-unit>
+
+  <!-- coming details starts -->
+
+  <mat-list role="list">
+    <mat-list-item role="listitem"
+     *ngFor="let item of detailsArr.controls; let i = index"
+     [formGroupName]="i">
+      <span>{{i + 1}} - {{item.value.storageItemString}} {{item.value.count}} шт. по цене: {{item.value.price}}</span>
+      <span class="example-spacer"></span>
+      <div class="example-button-container">
+        <button mat-mini-fab color="warn">
+          <mat-icon (click)="onRemoveDetail(i)">cancel</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <!-- coming details ends -->
 
   <app-build-coming-detail
-    (loaded)="isLoading = $event"
     (dataChanged)="addDetails($event)">
   </app-build-coming-detail>
   <br>

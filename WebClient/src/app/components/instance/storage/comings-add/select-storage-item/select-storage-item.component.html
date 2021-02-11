@@ -11,7 +11,7 @@
       </button>
     </span>
     </mat-option>
-    <mat-option *ngFor="let item of filteredItems | async" [value]="item.id">
+    <mat-option *ngFor="let item of filteredItems | async" [value]="item">
       {{item.article.category}} {{item.article.brand}} {{item.article.model}} {{item.article.condition}} {{item.article.comment}}
     </mat-option>
   </mat-select>

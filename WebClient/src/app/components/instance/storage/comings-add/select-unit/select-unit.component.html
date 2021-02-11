@@ -1,0 +1,26 @@
+<mat-form-field class="full-width">
+  <mat-label>Подразделение</mat-label>
+  <mat-select [formControl]="selectUnitControl">
+    <mat-option disabled>
+          <span class="filter">
+            <input matInput
+                   placeholder="Подразделение"
+                   value="{{ this.unitFilterControl.value }}"
+                   (keydown)="handleInput($event)"
+                   [formControl]="unitFilterControl"/>
+            <button mat-raised-button
+                    color="primary"
+                    matSuffix
+                    (click)="openAddUnitDialog()">
+                Создать подразделение
+            </button>
+          </span>
+    </mat-option>
+    <mat-option *ngFor="let item of filteredUnits | async" [value]="item.id">
+      +7{{item.phone}} {{item.name}}
+    </mat-option>
+    <mat-option disabled *ngIf="filteredUnits == undefined">
+      <span>Не найдено</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

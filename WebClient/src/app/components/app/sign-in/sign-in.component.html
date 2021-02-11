@@ -3,9 +3,8 @@
   <form [formGroup]="form">
     <mat-form-field class="full-width">
       <mat-label>Номер телефона</mat-label>
-      <input matInput
-             prefix="+7"
-             formControlName="login">
+      <span matPrefix>+7 &nbsp;</span>
+      <input formControlName="login" type="tel" matInput placeholder="555-555-1234" >
     </mat-form-field>
 
     <mat-form-field class="full-width">

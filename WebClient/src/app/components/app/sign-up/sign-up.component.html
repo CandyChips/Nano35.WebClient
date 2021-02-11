@@ -3,12 +3,19 @@
   <form [formGroup]="form">
     <mat-form-field class="full-width">
       <mat-label>Номер телефона</mat-label>
-      <input matInput formControlName="phone">
+      <span matPrefix>+7 &nbsp;</span>
+      <input formControlName="phone" type="tel" matInput placeholder="555-555-1234" >
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Электронная почта</mat-label>
-      <input matInput formControlName="email">
+      <input matInput placeholder="mail@example.com" formControlName="email">
+      <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">

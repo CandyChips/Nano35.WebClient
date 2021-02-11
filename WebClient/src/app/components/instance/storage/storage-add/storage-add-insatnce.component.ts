@@ -17,11 +17,9 @@ import {HttpClient, HttpEventType, HttpHeaders, HttpRequest} from "@angular/comm
 })
 export class StorageInstanceAddComponent {
   form!: FormGroup;
-  isLoading = true;
   error = "";
   conditions: any;
   articles: any;
-  images = [];
   public progress!: number;
   public message!: string;
   private id!: Guid;
@@ -123,7 +121,6 @@ export class StorageInstanceAddComponent {
       this.conditions = success;
       this.storageService.getAllArticles(this.tokenService.currentInstanceId).subscribe((success: any) => {
         this.articles = success;
-        this.isLoading = false;
       })
     }, (error: any) => {
 
@@ -140,15 +137,15 @@ export class StorageInstanceAddComponent {
     });
   }
 
-  onSubmin() {
-    this.isLoading = true;
+
+
+  onSubmit() {
     this.storageService.createStorageItem(this.form.value)
       .subscribe(
         (data: any) => {
           this.dialogRef.close();
         },
         (error: any) => {
-          this.isLoading = false;
           alert(error.error.message)
         });
   }

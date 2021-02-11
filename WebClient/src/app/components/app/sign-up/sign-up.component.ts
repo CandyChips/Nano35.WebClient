@@ -27,6 +27,7 @@ export class SignUpComponent implements OnInit {
       email: [
         "",
         [
+          Validators.email,
           Validators.required
         ]
       ],

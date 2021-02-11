@@ -1,89 +1,49 @@
-<div class="content-width" *ngIf="!isLoading">
-  <h2 mat-dialog-title>Добавить наименование</h2>
-  <mat-dialog-content class="mat-typography">
-    <form [formGroup]="form">
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Категория
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <ng-template matExpansionPanelContent>
-          <form [formGroup]="categoriesform">
-            <mat-list class="full-width">
-              <ng-container  *ngIf="categoriesArr.controls.length != 0">
-                <mat-list-item
-                  *ngFor="let tag of categoriesArr.controls; let i = index"
-                  [formGroupName]="i">
-                  <span>{{i}} - {{tag.value.name}}</span>
-                  <span class="example-spacer"></span>
-                  <div class="example-button-container">
-                    <button mat-mini-fab color="warn">
-                      <mat-icon (click)="onRemoveCategory(i)">cancel</mat-icon>
-                    </button>
-                  </div>
-                  <mat-divider></mat-divider>
-                </mat-list-item>
-              </ng-container>
-              <mat-list-item>
-                <form [formGroup]="categoryForm" class="full-width">
-                  <mat-form-field class="full-width">
-                    <mat-label>
-                      <span *ngIf="categoriesArr.controls.length == 0">
-                        Добавить категорию
-                      </span>
-                      <span *ngIf="categoriesArr.controls.length != 0">
-                        Добавить подкатегорию к {{categoriesArr.controls[categoriesArr.controls.length - 1].value.name}}
-                      </span>
-                    </mat-label>
-                    <mat-select>
-                      <mat-option disabled="true">
-                        <span style="display: flex">
-                          <input matInput placeholder="Устройства etc" formControlName="name" (keydown)="handleInput($event)">
-                          <button mat-button color="primary" (click)="onCreateCategory()">Добавить категорию</button>
-                        </span>
-                        <mat-divider></mat-divider>
-                      </mat-option>
-                      <mat-option *ngFor="let tag of filteredAllCategories | async" (click)="onSelectCategory(tag)">
-                        <span *ngIf="categoriesArr.controls[0] != undefined">{{categoriesArr.controls[categoriesArr.controls.length - 1].value.name}} -> </span> {{tag.name}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </form>
-              </mat-list-item>
-            </mat-list>
-          </form>
-        </ng-template>
-      </mat-expansion-panel>
+<h2 mat-dialog-title>Добавить наименование</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Категория
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
 
-      <mat-form-field class="full-width">
-        <mat-label>Бренд</mat-label>
-        <input formControlName="model" matInput [matAutocomplete]="autoBrands" >
-        <mat-autocomplete autoActiveFirstOption #autoBrands="matAutocomplete">
-          <mat-option *ngFor="let option of filteredBrands | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+        <app-select-category
+          (dataChanged)="onChangeCategory($event)">
+        </app-select-category>
 
-      <mat-form-field class="full-width">
-        <mat-label>Модель</mat-label>
-        <input formControlName="brand" matInput [matAutocomplete]="autoModels" >
-        <mat-autocomplete autoActiveFirstOption #autoModels="matAutocomplete">
-          <mat-option *ngFor="let option of filteredModels | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+      </ng-template>
+    </mat-expansion-panel>
 
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Характеристики
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+    <mat-form-field class="full-width">
+      <mat-label>Бренд</mat-label>
+      <input formControlName="model" matInput [matAutocomplete]="autoBrands" >
+      <mat-autocomplete autoActiveFirstOption #autoBrands="matAutocomplete">
+        <mat-option *ngFor="let option of filteredBrands | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
 
-        <ng-template matExpansionPanelContent>
+    <mat-form-field class="full-width">
+      <mat-label>Модель</mat-label>
+      <input formControlName="brand" matInput [matAutocomplete]="autoModels" >
+      <mat-autocomplete autoActiveFirstOption #autoModels="matAutocomplete">
+        <mat-option *ngFor="let option of filteredModels | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Характеристики
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
         <span>
           <form [formGroup]="specForm">
             <mat-form-field style="width: 30%">
@@ -102,41 +62,36 @@
             <button mat-button color="primary" style="width: 20%" (click)="onCreateSpec()">Добавить характеристику</button>
           </form>
         </span>
-          <mat-divider></mat-divider>
-          <mat-list role="list">
-            <mat-list-item role="listitem"
-                           *ngFor="let tag of spcsArr.controls; let i = index"
-                           [formGroupName]="i">
-              <mat-divider></mat-divider>
-              <span>{{i + 1}}. {{tag.value.item1}} - {{tag.value.item2}}</span>
-            </mat-list-item>
-          </mat-list>
+        <mat-divider></mat-divider>
+        <mat-list role="list">
+          <mat-list-item role="listitem"
+                         *ngFor="let tag of spcsArr.controls; let i = index"
+                         [formGroupName]="i">
+            <mat-divider></mat-divider>
+            <span>{{i + 1}}. {{tag.value.item1}} - {{tag.value.item2}}</span>
+          </mat-list-item>
+        </mat-list>
 
-        </ng-template>
-      </mat-expansion-panel>
+      </ng-template>
+    </mat-expansion-panel>
 
-      <mat-form-field class="full-width">
-        <mat-label>Описание</mat-label>
-        <textarea  style="height: 3rem"  formControlName="info" matInput ></textarea>
-      </mat-form-field>
-    </form>
-  </mat-dialog-content>
-  <mat-dialog-actions align="start">
-    <button mat-button
-            color="warn"
-            mat-dialog-close
-            style="width: 20%">
-      Закрыть
-    </button>
-    <button mat-button
-            color="primary"
-            (click)="onSubmitClick()"
-            style="width: 70%">
-      Создать
-    </button>
-  </mat-dialog-actions>
-</div>
-<div class="content-width" *ngIf="isLoading">
-  <h1>Загрузка</h1>
-</div>
-
+    <mat-form-field class="full-width">
+      <mat-label>Описание</mat-label>
+      <textarea  style="height: 3rem"  formControlName="info" matInput ></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+  <button mat-button
+          color="warn"
+          mat-dialog-close
+          style="width: 20%">
+    Закрыть
+  </button>
+  <button mat-button
+          color="primary"
+          (click)="onSubmitClick()"
+          style="width: 70%">
+    Создать
+  </button>
+</mat-dialog-actions>

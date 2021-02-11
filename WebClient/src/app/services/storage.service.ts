@@ -19,6 +19,12 @@ export class StorageService {
     return this.http.get<any>(dest);
   }
 
+  getAllStorageItemById(id: Guid): Observable<any> {
+    let dest = "http://localhost:5103/StorageItems/GetStorageItemById?Id=" + id.toString()
+
+    return this.http.get<any>(dest);
+  }
+
   getAllStorageItemConditions(): Observable<any> {
     let dest = "http://localhost:5103/StorageItems/GetAllStorageItemConditions";
 
@@ -54,12 +60,15 @@ export class StorageService {
     return this.http.post<any>(dest, data);
   }
 
-  getSubCategoriesById(parentId: Guid, instanceId: Guid) : Observable<any> {
-    let dest = "http://localhost:5103/Articles/GetAllArticleCategories?instanceid=" + instanceId;
-    if(parentId != Guid.createEmpty())
-    {
-      dest += "&parentId=" + parentId.toString();
-    }
+  createComing(data: any) {
+    let dest = "http://localhost:5103/warehouse/CreateComing";
+
+    return this.http.post<any>(dest, data);
+  }
+
+  getSubCategoriesById(parentId: Guid) : Observable<any> {
+    console.log(parentId)
+    let dest = "http://localhost:5103/Articles/GetAllArticleCategories?parentId=" + parentId;
     return this.http.get<any>(dest);
   }
 

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {map, startWith} from "rxjs/operators";
@@ -13,11 +13,12 @@ import {Guid} from "guid-typescript";
 })
 export class BuildComingDetailComponent {
   form!: FormGroup;
-  @Output() loaded: EventEmitter<any> = new EventEmitter<any>();
+
   @Output() dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
   items: any;
   filteredItems: any;
+
 
   itemFilterControl = new FormControl();
   itemSelectControl = new FormControl();
@@ -33,8 +34,8 @@ export class BuildComingDetailComponent {
         Guid.create().toString(),
         [Validators.required]
       ],
-      storageItemId: [
-        this.tokenService.currentInstanceId,
+      stringItemId: [
+        "",
         [Validators.required]
       ],
       placeOnStorage: [
@@ -50,17 +51,20 @@ export class BuildComingDetailComponent {
         [Validators.required]
       ]
     });
+
+
     this.storageService.getAllStorageItems(this.tokenService.currentInstanceId)
       .subscribe((success: any) => {
         this.items = success;
         this.filteredItems = this.itemFilterControl.valueChanges.pipe(
           startWith(''),
           map(value =>
-            this.items.filter((option: any) => (option.model.toLowerCase() + " " + option.brand.toLowerCase()).includes(value.toLowerCase()))
+            this.items.filter((option: any) =>
+              (option.model.toLowerCase() + " " + option.brand.toLowerCase())
+                .includes(value.toLowerCase()))
           ));
-        this.loaded.emit(false);
         this.itemSelectControl.valueChanges.subscribe((data: any) => {
-          console.log(data);
+
         })
     });
   }
@@ -71,9 +75,10 @@ export class BuildComingDetailComponent {
 
   pushDetail() {
     this.dataChanged.emit(this.form.value);
+    console.log(this.form.value)
   }
 
-  storageItemIdChange(data: any) {
-    this.form.controls.storageItemId.setValue(data);
+  storageItemChanged(data: any) {
+    this.form.controls.stringItemId.setValue(data.id);
   }
 }

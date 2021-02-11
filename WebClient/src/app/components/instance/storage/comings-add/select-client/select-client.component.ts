@@ -12,7 +12,6 @@ import {ClientsAddDialogComponent} from "../../../clients/clients-add/clients-ad
   styleUrls: ['./select-client.component.scss']
 })
 export class SelectClientComponent {
-  @Output() loaded: EventEmitter<any> = new EventEmitter<any>();
   @Output() dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
   clients: any;
@@ -37,7 +36,6 @@ export class SelectClientComponent {
                 ("+7" + option.phone.toLowerCase() + " " + option.name.toLowerCase())
                   .includes(value.toLowerCase()))
             ));
-        this.loaded.emit(false);
         this.selectClientControl.valueChanges
           .subscribe((data: any) => {
             this.dataChanged.emit(data);
@@ -66,7 +64,6 @@ export class SelectClientComponent {
                     .includes(value.toLowerCase()))
               )
             );
-            this.loaded.emit(false);
             this.selectClientControl.valueChanges.subscribe((data: any) => {
               this.dataChanged.emit(data);
             })
