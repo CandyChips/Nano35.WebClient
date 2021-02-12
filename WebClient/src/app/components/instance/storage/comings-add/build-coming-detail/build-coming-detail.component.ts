@@ -34,7 +34,7 @@ export class BuildComingDetailComponent {
         Guid.create().toString(),
         [Validators.required]
       ],
-      stringItemId: [
+      storageItemId: [
         "",
         [Validators.required]
       ],
@@ -79,6 +79,6 @@ export class BuildComingDetailComponent {
   }
 
   storageItemChanged(data: any) {
-    this.form.controls.stringItemId.setValue(data.id);
+    this.form.controls.storageItemId.setValue(data.id);
   }
 }

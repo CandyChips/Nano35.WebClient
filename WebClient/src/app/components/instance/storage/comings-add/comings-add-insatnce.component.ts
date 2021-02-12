@@ -17,6 +17,7 @@ import {ClientsService} from "../../../../services/clients.service";
 export class ComingsAddInsatnceComponent {
   form!: FormGroup;
   error = "";
+  isLoading = true;
 
   constructor(
     public dialog: MatDialog,
@@ -34,7 +35,7 @@ export class ComingsAddInsatnceComponent {
         Guid.create().toString(),
         [Validators.required]
       ],
-      intsanceId: [
+      instanceId: [
         this.tokenService.currentInstanceId,
         [Validators.required]
       ],
@@ -56,6 +57,7 @@ export class ComingsAddInsatnceComponent {
       ],
       details: this.formBuilder.array([])
     });
+    this.isLoading = false;
   }
 
   get detailsArr() {
@@ -74,6 +76,7 @@ export class ComingsAddInsatnceComponent {
   }
 
   updateUnit(data: any) {
+    console.log(data);
     this.form.controls.unitId.setValue(data.id);
   }
 
@@ -81,9 +84,16 @@ export class ComingsAddInsatnceComponent {
     this.detailsArr.removeAt(index);
   }
 
+  checkForm() {
+    console.log(this.form.value);
+  }
+
   onSubmin() {
     console.log(this.form.value)
-    this.storageService.createComing(this.form.value)
+    this.storageService.createComing(
+      this.form.value,
+      Guid.create(),
+      this.tokenService.currentInstanceId)
       .subscribe(
         (data: any) => {
           this.dialogRef.close();

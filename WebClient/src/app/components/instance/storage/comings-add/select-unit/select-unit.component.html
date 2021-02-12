@@ -16,7 +16,7 @@
             </button>
           </span>
     </mat-option>
-    <mat-option *ngFor="let item of filteredUnits | async" [value]="item.id">
+    <mat-option *ngFor="let item of filteredUnits | async" [value]="item">
       +7{{item.phone}} {{item.name}}
     </mat-option>
     <mat-option disabled *ngIf="filteredUnits == undefined">

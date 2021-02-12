@@ -90,6 +90,7 @@
   </button>
   <button mat-button
           color="primary"
+          [disabled]="form.invalid"
           (click)="onSubmitClick()"
           style="width: 70%">
     Создать

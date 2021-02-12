@@ -14,6 +14,8 @@ import {ArticleAddDialogComponent} from "../../article-add/article-add.component
 export class SelectArticleComponent {
   @Output() dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
+  isLoading = true;
+
   articles: any;
   filteredArticles: any;
 
@@ -25,6 +27,7 @@ export class SelectArticleComponent {
     private tokenService: TokenService,
     private storageService: StorageService) {
 
+    this.isLoading = true;
     this.storageService.getAllArticles(this.tokenService.currentInstanceId)
       .subscribe((success: any) => {
         this.articles = success;
@@ -33,13 +36,14 @@ export class SelectArticleComponent {
             startWith(''),
             map(value =>
               this.articles.filter((option: any) =>
-                (option.category.toLowerCase() + " " + option.phone.toLowerCase() + " " + option.name.toLowerCase())
+                (option.category.toLowerCase() + " " + option.brand.toLowerCase() + " " + option.model.toLowerCase())
                   .includes(value.toLowerCase()))
             ));
         this.selectArticleControl.valueChanges
           .subscribe((data: any) => {
             this.dataChanged.emit(data);
-        })
+        });
+        this.isLoading = false;
       },
       (error: any) => {});
   }
@@ -49,6 +53,7 @@ export class SelectArticleComponent {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.isLoading = true;
       this.storageService.getAllArticles(this.tokenService.currentInstanceId)
         .subscribe((success: any) => {
             this.articles = success;
@@ -63,7 +68,8 @@ export class SelectArticleComponent {
             this.selectArticleControl.valueChanges
               .subscribe((data: any) => {
                 this.dataChanged.emit(data);
-              })
+              });
+            this.isLoading = false;
           },
           (error: any) => {});
     });

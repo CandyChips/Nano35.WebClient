@@ -98,6 +98,7 @@ export class ArticleAddDialogComponent {
   }
 
   onChangeCategory(data: any) {
+    console.log(data)
     this.form.controls.categoryId.setValue(data.id);
   }
 }

@@ -1,7 +1,8 @@
-<mat-form-field class="full-width">
-  <mat-label>Поставщик</mat-label>
-  <mat-select [formControl]="selectClientControl">
-    <mat-option disabled>
+<div *ngIf="!isLoading">
+  <mat-form-field class="full-width">
+    <mat-label>Поставщик</mat-label>
+    <mat-select [formControl]="selectClientControl">
+      <mat-option disabled>
           <span class="filter">
             <input matInput
                    placeholder="Клиент"
@@ -15,12 +16,16 @@
                 Создать поставщика
             </button>
           </span>
-    </mat-option>
-    <mat-option *ngFor="let item of filteredClients | async" [value]="item.id">
-      +7{{item.phone}} {{item.name}}
-    </mat-option>
-    <mat-option disabled *ngIf="filteredClients == undefined">
-      <span>Не найдено</span>
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+      </mat-option>
+      <mat-option *ngFor="let item of filteredClients | async" [value]="item.id">
+        +7{{item.phone}} {{item.name}}
+      </mat-option>
+      <mat-option disabled *ngIf="filteredClients == undefined">
+        <span>Не найдено</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="spinner" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>

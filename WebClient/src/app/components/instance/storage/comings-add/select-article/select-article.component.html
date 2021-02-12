@@ -1,7 +1,8 @@
-<mat-form-field class="full-width">
-  <mat-label>Наименование</mat-label>
-  <mat-select [formControl]="selectArticleControl">
-    <mat-option disabled>
+<div  *ngIf="!isLoading">
+  <mat-form-field class="full-width">
+    <mat-label>Наименование</mat-label>
+    <mat-select [formControl]="selectArticleControl">
+      <mat-option disabled>
           <span class="filter">
             <input matInput
                    placeholder="Поиск"
@@ -16,12 +17,16 @@
                 Создать
             </button>
           </span>
-    </mat-option>
-    <mat-option *ngFor="let item of filteredArticles | async" [value]="item">
-      {{item.category}} {{item.brand}} {{item.model}}
-    </mat-option>
-    <mat-option disabled *ngIf="filteredArticles.count == undefined">
-      <span>Не найдено</span>
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+      </mat-option>
+      <mat-option *ngFor="let item of filteredArticles | async" [value]="item">
+        {{item.category}} {{item.brand}} {{item.model}}
+      </mat-option>
+      <mat-option disabled *ngIf="filteredArticles.count == 0">
+        <span>Не найдено</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="spinner" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>

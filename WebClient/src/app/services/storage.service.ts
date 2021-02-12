@@ -13,6 +13,18 @@ export class StorageService {
     private http: HttpClient) {
   }
 
+  addInstanceIdToHeader(instanceId: Guid, value: HttpHeaders) : HttpHeaders {
+    return value.append("instanceId", instanceId.toString());
+  }
+
+  addNewIdToHeader(newId: Guid, value: HttpHeaders) : HttpHeaders {
+    return value.append("newId", newId.toString());
+  }
+
+  addWorkerIdToHeader(workerId: Guid, value: HttpHeaders) : HttpHeaders {
+    return value.append("workerId", workerId.toString());
+  }
+
   getAllStorageItems(instanceId: Guid): Observable<any> {
     let dest = "http://localhost:5103/StorageItems/GetAllStorageItems?instanceId=" + instanceId.toString()
 
@@ -48,22 +60,32 @@ export class StorageService {
     return this.http.get<any>(dest);
   }
 
-  createStorageItem(data: any) {
+  createStorageItem(data: any) : Observable<any> {
     let dest = "http://localhost:5103/StorageItems/CreateStorageItem";
 
     return this.http.post<any>(dest, data);
   }
 
-  createArticle(data: any) {
+  createArticle(data: any) : Observable<any> {
     let dest = "http://localhost:5103/Articles/CreateArticle";
 
     return this.http.post<any>(dest, data);
   }
 
-  createComing(data: any) {
+  createComing(data: any, newId: Guid, instanceId: Guid) : Observable<any> {
     let dest = "http://localhost:5103/warehouse/CreateComing";
+    let opts = {headers:
+        this.addNewIdToHeader(newId,
+          this.addInstanceIdToHeader(instanceId,
+            new HttpHeaders()
+          ))};
+    return this.http.post<any>(dest, data, opts);
+  }
 
-    return this.http.post<any>(dest, data);
+  getAllComings(instanceId: Guid) : Observable<any> {
+    let dest = "http://localhost:5103/Warehouse/GetAllComings?InstanceId=" + instanceId;
+
+    return this.http.get<any>(dest);
   }
 
   getSubCategoriesById(parentId: Guid) : Observable<any> {

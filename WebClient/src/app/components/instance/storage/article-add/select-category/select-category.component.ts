@@ -74,6 +74,7 @@ export class SelectCategoryComponent {
 
   onRemoveCategory(index: number) {
     this.categories = [];
+    this.filteredCategories = new Observable<any[]>();
 
     this.selectedCategories.splice(index, this.selectedCategories.length - index);
 
@@ -108,14 +109,17 @@ export class SelectCategoryComponent {
       Guid.createEmpty().toString() :
       this.selectedCategories[this.selectedCategories.length - 1].id;
 
+    let newId = Guid.create().toString();
     let newItem = {
       instanceId: this.tokenService.currentInstanceId,
-      newId: Guid.create().toString(),
+      newId: newId,
+      id: newId,
       name: this.categoryFilterControl.value,
       parentCategoryId: parent };
 
     this.storageService.createSubCategories(newItem).subscribe((success: any) => {
       this.selectedCategories.push(newItem);
+      this.dataChanged.emit(newItem);
       this.categoryFilterControl.setValue('');
     });
   }

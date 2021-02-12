@@ -25,7 +25,7 @@ export class ComingsViewInsatnceComponent implements OnInit {
   }
 
   load() {
-    this.storageService.getAllStorageItems(this.tokenService.currentInstanceId).subscribe(
+    this.storageService.getAllComings(this.tokenService.currentInstanceId).subscribe(
       (success: any) => {
         this.items = success;
       },

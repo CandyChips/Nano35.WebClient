@@ -14,6 +14,8 @@ import {StorageService} from "../../../../../services/storage.service";
 export class SelectStorageItemComponent {
   @Output() dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
+  isLoading = true;
+
   items: any;
   filteredItems: any;
 
@@ -35,6 +37,7 @@ export class SelectStorageItemComponent {
               (option.article.model.toLowerCase() + " " + option.article.brand.toLowerCase())
                 .includes(value.toLowerCase()))
           ));
+        this.isLoading = false;
       });
     this.itemSelectControl.valueChanges
       .subscribe((data: any) => {
@@ -51,14 +54,16 @@ export class SelectStorageItemComponent {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.isLoading = true;
       this.storageService.getAllStorageItems(this.tokenService.currentInstanceId).subscribe((success: any) => {
         this.items = success;
         this.filteredItems = this.itemFilterControl.valueChanges.pipe(
           startWith(''),
           map(value =>
-            this.items.filter((option: any) => (option.model.toLowerCase() + " " + option.brand.toLowerCase()).includes(value.toLowerCase()))
+            this.items.filter((option: any) => (option.article.model.toLowerCase() + " " + option.article.brand.toLowerCase()).includes(value.toLowerCase()))
           ));
       });
+      this.isLoading = false;
     });
   }
 }

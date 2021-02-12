@@ -12,36 +12,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="508fc034-e672-44f4-9d9f-00bcb8000799" name="Default Changelist" comment="Added identity module">
-      <change afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Nano35.WebClient.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Nano35.WebClient.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/app/sign-in/sign-in.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/app/sign-in/sign-in.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/app/sign-up/sign-up.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/app/sign-up/sign-up.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/app/sign-up/sign-up.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/app/sign-up/sign-up.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/clients/clients-add/clients-add.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/clients/clients-add/clients-add.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/clients/clients-add/clients-add.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/clients/clients-add/clients-add.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-view/comings-view-insatnce.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-view/comings-view-insatnce.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebClient/src/app/modules/instances/instance.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/modules/instances/instance.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebClient/src/app/services/storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/app/services/storage.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +58,6 @@
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client-comings-add-instance.component.ts/select-client-comings-add-instance.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client-comings-add-instance.component.ts/select-client-comings-add-instance.component.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-view/comings-view-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-view/storage-view-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/warehouse-view/warehouse-view-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/clients/clients-view/clients-view-insatnce.component.ts" />
@@ -83,36 +70,37 @@
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client-to-coming/select-client-to-coming.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client-to-coming/select-client-to-coming.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/services/token.service.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/clients/clients-add/clients-add.component.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/tsconfig.app.json" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.scss" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/clients/clients-add/clients-add.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/app/sign-in/sign-in.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/app/sign-up/sign-up.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/app/sign-up/sign-up.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" />
       <option value="$PROJECT_DIR$/WebClient/src/app/modules/instances/instance.module.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/services/storage.service.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.scss" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.html" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.ts" />
-      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.scss" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-client/select-client.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-article/select-article.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/storage-add/storage-add-insatnce.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-storage-item/select-storage-item.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/select-unit/select-unit.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/build-coming-detail/build-coming-detail.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-view/comings-view-insatnce.component.ts" />
       <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/article-add.component.html" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/article-add/select-category/select-category.component.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/services/storage.service.ts" />
+      <option value="$PROJECT_DIR$/WebClient/src/app/components/instance/storage/comings-add/comings-add-insatnce.component.ts" />
     </changedPaths>
   </component>
   <component name="KubernetesApiPersistence">
@@ -188,7 +176,9 @@
       <workItem from="1612865032257" duration="15504000" />
       <workItem from="1612951766378" duration="3238000" />
       <workItem from="1612959547713" duration="19324000" />
-      <workItem from="1613033312757" duration="28115000" />
+      <workItem from="1613033312757" duration="28314000" />
+      <workItem from="1613127191541" duration="3938000" />
+      <workItem from="1613136746046" duration="3734000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed angular material">
       <created>1611679681447</created>
@@ -288,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612979319055</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Completed articles component">
+      <created>1613067959512</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613067959512</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,6 +319,7 @@
     <MESSAGE value="123" />
     <MESSAGE value="Fixed add coming component" />
     <MESSAGE value="das" />
-    <option name="LAST_COMMIT_MESSAGE" value="das" />
+    <MESSAGE value="Completed articles component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed articles component" />
   </component>
 </project>

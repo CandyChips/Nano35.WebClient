@@ -127,6 +127,11 @@ export class StorageInstanceAddComponent {
     });
   }
 
+  onChangeArticle(data: any) {
+    console.log(data);
+    this.form.controls.articleId.setValue(data.id);
+  }
+
   openAddArticleDialog(): void {
     const dialogRef = this.dialog.open(ArticleAddDialogComponent, {
       width: '600px'
@@ -140,6 +145,7 @@ export class StorageInstanceAddComponent {
 
 
   onSubmit() {
+    console.log(this.form.value)
     this.storageService.createStorageItem(this.form.value)
       .subscribe(
         (data: any) => {

@@ -14,6 +14,8 @@ import {ClientsAddDialogComponent} from "../../../clients/clients-add/clients-ad
 export class SelectClientComponent {
   @Output() dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
+  isLoading = true;
+
   clients: any;
   filteredClients: any;
 
@@ -40,6 +42,7 @@ export class SelectClientComponent {
           .subscribe((data: any) => {
             this.dataChanged.emit(data);
         })
+        this.isLoading = false;
       },
       (error: any) => {});
   }

@@ -1,7 +1,8 @@
-<mat-form-field class="full-width">
-  <mat-label>Товар</mat-label>
-  <mat-select [formControl]="itemSelectControl">
-    <mat-option disabled>
+<div *ngIf="!isLoading">
+  <mat-form-field class="full-width">
+    <mat-label>Товар</mat-label>
+    <mat-select [formControl]="itemSelectControl">
+      <mat-option disabled>
     <span style="display: flex">
       <input placeholder="Поиск" matInput value="{{ this.itemFilterControl.value }}"
              (keydown)="handleInput($event)"
@@ -10,9 +11,13 @@
         Новый товар
       </button>
     </span>
-    </mat-option>
-    <mat-option *ngFor="let item of filteredItems | async" [value]="item">
-      {{item.article.category}} {{item.article.brand}} {{item.article.model}} {{item.article.condition}} {{item.article.comment}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+      </mat-option>
+      <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+        {{item.article.category}} {{item.article.brand}} {{item.article.model}} {{item.article.condition}} {{item.article.comment}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="spinner" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
