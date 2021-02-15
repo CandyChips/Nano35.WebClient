@@ -14,7 +14,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class ViewInstancesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'orgName', 'action'];
-  instances: any[] | undefined;
+  instances: any;
   isLoading: boolean = true;
 
   constructor(
@@ -27,12 +27,12 @@ export class ViewInstancesComponent implements OnInit {
     this.isLoading = true;
     this.identityService.getIdentity().subscribe(
       (data: any) => {
-      instanceService.getAllInstances(data.data.id, Guid.createEmpty(), Guid.createEmpty()).subscribe(
+        this.instanceService.getAllInstances(data.data.id, Guid.createEmpty(), Guid.createEmpty()).subscribe(
         (data: any) => {
         this.instances = data;
         this.isLoading = false;
       });
-    })
+    });
   }
 
   ngOnInit() {
@@ -48,6 +48,15 @@ export class ViewInstancesComponent implements OnInit {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.isLoading = true;
+      this.identityService.getIdentity().subscribe(
+        (data: any) => {
+          this.instanceService.getAllInstances(data.data.id, Guid.createEmpty(), Guid.createEmpty()).subscribe(
+            (data: any) => {
+              this.instances = data;
+              this.isLoading = false;
+            });
+        });
     });
   }
 }

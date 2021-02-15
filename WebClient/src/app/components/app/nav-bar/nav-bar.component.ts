@@ -25,4 +25,8 @@ export class NavBarComponent {
     });
 
   }
+
+  logout() {
+    this.tokenService.removeToken();
+  }
 }

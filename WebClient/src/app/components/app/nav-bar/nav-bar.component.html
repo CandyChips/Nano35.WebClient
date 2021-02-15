@@ -6,17 +6,13 @@
     </button>
     <span class="example-spacer"></span>
     <ng-container *ngIf="identity == null">
-      <button mat-icon-button
-              routerLink="/signin"
-              class="example-icon"
-              aria-label="Example icon-button with menu icon">
-        <mat-icon>login</mat-icon>
+      <button mat-button
+              routerLink="/signin">
+        <span>Вход</span>
       </button>
-      <button mat-icon-button
-              routerLink="/signup"
-              class="example-icon"
-              aria-label="Example icon-button with menu icon">
-        <mat-icon>supervised_user_circle</mat-icon>
+      <button mat-button
+              routerLink="/signup">
+        <span>Регистрация</span>
       </button>
     </ng-container>
 
@@ -28,6 +24,11 @@
       <button mat-button
               routerLink="/instances">
         Организации
+      </button>
+      <button mat-button
+              color="accent"
+              (click)="logout()">
+        Выход
       </button>
     </ng-container>
   </mat-toolbar-row>

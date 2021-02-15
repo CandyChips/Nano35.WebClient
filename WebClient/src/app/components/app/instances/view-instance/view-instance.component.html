@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading" class="full-width">
   <button mat-button color="primary" class="full-width" (click)="openAddInstanceDialog()">Создать</button>
-  <div *ngIf="instances" class="full-width">
+  <div *ngIf="instances.length != 0" class="full-width">
     <table mat-table [dataSource]="instances" class="mat-elevation-z8, full-width">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>
@@ -43,7 +43,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-  <div *ngIf="!instances" class="content">
+  <div *ngIf="instances.length == 0" class="content">
     <h1>Нет организаций</h1>
   </div>
 </div>
