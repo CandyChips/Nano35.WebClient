@@ -7,7 +7,7 @@ import {TokenService} from "../../../../../services/token.service";
 import {ClientsAddDialogComponent} from "../../../clients/clients-add/clients-add.component";
 import {UnitsService} from "../../../../../services/units.service";
 import {Guid} from "guid-typescript";
-import {UnitsInstanceAddComponent} from "../../../units/units-add/units-add-insatnce.component";
+import {UnitsAddDialogComponent} from "../../../units/units-add/units-add-insatnce.component";
 
 @Component({
   selector: 'app-select-unit',
@@ -51,7 +51,7 @@ export class SelectUnitComponent {
   }
 
   openAddUnitDialog() {
-    const dialogRef = this.dialog.open(UnitsInstanceAddComponent, {
+    const dialogRef = this.dialog.open(UnitsAddDialogComponent, {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {

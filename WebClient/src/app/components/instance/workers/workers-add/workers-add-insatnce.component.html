@@ -8,9 +8,7 @@
 
     <mat-form-field class="full-width">
       <mat-label>Роль</mat-label>
-      <mat-select
-        formControlName="roleId"
-        style="width: 100%;">
+      <mat-select formControlName="roleId" class="full-width">
         <mat-option *ngFor="let item of workerRoles" [value]="item.id">{{item.name}}</mat-option>
       </mat-select>
     </mat-form-field>

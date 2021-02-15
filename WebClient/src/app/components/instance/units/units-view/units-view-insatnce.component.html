@@ -1,38 +1,67 @@
-<div *ngIf="units != null" class="full-width">
-  <table mat-table [dataSource]="units" class="mat-elevation-z8, full-width">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Имя </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+<div *ngIf="!isLoading">
+  <div *ngIf="units.length != 0" class="full-width">
+    <button mat-button color="primary" class="full-width" (click)="openAddUnitDialog()">Создать</button>
+    <table mat-table [dataSource]="units" class="mat-elevation-z8, full-width">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Имя</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.name}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="adress">
-      <th mat-header-cell *matHeaderCellDef> Адресс </th>
-      <td mat-cell *matCellDef="let element"> {{element.adress}} </td>
-    </ng-container>
+      <ng-container matColumnDef="adress">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Адресс</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.adress}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="workingFormat">
-      <th mat-header-cell *matHeaderCellDef> Рабочий формат </th>
-      <td mat-cell *matCellDef="let element"> {{element.workingFormat}} </td>
-    </ng-container>
+      <ng-container matColumnDef="workingFormat">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Рабочий формат</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.workingFormat}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="phone">
-      <th mat-header-cell *matHeaderCellDef> Контактный номер </th>
-      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-    </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Контактный номер</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.phone}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="unitType">
-      <th mat-header-cell *matHeaderCellDef> Тип </th>
-      <td mat-cell *matCellDef="let element"> {{element.unitType}} </td>
-    </ng-container>
+      <ng-container matColumnDef="unitType">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Тип</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.unitType}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef  class="actions-header"> Действия </th>
-      <td mat-cell *matCellDef="let element" class="actions-header"> {{element.symbol}}
-        <button mat-raised-button color="primary" (click)="detailsOf(element)">Информация</button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef  class="actions-header"> Действия </th>
+        <td mat-cell *matCellDef="let element" class="actions-header"> {{element.symbol}}
+          <button mat-raised-button color="primary" (click)="detailsOf(element)">Информация</button>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="units.length == 0" class="content">
+    <h1>Нет подразделений</h1>
+  </div>
+</div>
+<div *ngIf="isLoading" class="content">
+  <mat-spinner></mat-spinner>
 </div>

@@ -1,28 +1,52 @@
-<div *ngIf="instances != null" class="full-width">
-  <table mat-table [dataSource]="instances" class="mat-elevation-z8, full-width">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Назание </th>
-      <td mat-cell *matCellDef="let element"> {{element.orgName}} </td>
-    </ng-container>
+<div *ngIf="!isLoading" class="full-width">
+  <button mat-button color="primary" class="full-width" (click)="openAddInstanceDialog()">Создать</button>
+  <div *ngIf="instances" class="full-width">
+    <table mat-table [dataSource]="instances" class="mat-elevation-z8, full-width">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Назание</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.orgName}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> Почта </th>
-      <td mat-cell *matCellDef="let element"> {{element.orgEmail}} </td>
-    </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Почта</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.orgEmail}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="orgName">
-      <th mat-header-cell *matHeaderCellDef> Организация </th>
-      <td mat-cell *matCellDef="let element"> {{element.orgName}} </td>
-    </ng-container>
+      <ng-container matColumnDef="orgName">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Организация</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.orgName}}</span>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef  class="actions-header"> Действия </th>
-      <td mat-cell *matCellDef="let element" class="actions"> {{element.symbol}}
-        <button mat-raised-button color="primary" (click)="selectInstance(element)">Войти</button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="actions-header">
+          <span>Действия</span>
+        </th>
+        <td mat-cell *matCellDef="let element" class="actions">
+          {{element.symbol}}
+          <button mat-raised-button color="primary" (click)="selectInstance(element)">Войти</button>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="!instances" class="content">
+    <h1>Нет организаций</h1>
+  </div>
+</div>
+<div *ngIf="isLoading" class="content">
+  <mat-spinner></mat-spinner>
 </div>

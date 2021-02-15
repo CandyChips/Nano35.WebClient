@@ -12,7 +12,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   templateUrl: './new-instance.component.html',
   styleUrls: ["./new-instance.component.scss"]
 })
-export class NewInstancesComponent implements OnInit {
+export class InstanceAddDialogComponent implements OnInit {
   form!: FormGroup;
   isLoading = true;
   regions: any;
@@ -24,7 +24,7 @@ export class NewInstancesComponent implements OnInit {
     private tokenService: TokenService,
     private identityService: IdentityService,
     private instanceService: InstanceService,
-    public dialogRef: MatDialogRef<NewInstancesComponent>,
+    public dialogRef: MatDialogRef<InstanceAddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.instanceService.getAllRegions().subscribe((regionsData: any) => {
       this.regions = regionsData;

@@ -5,33 +5,39 @@ import {TokenService} from "../../../../services/token.service";
 import {UnitsService} from "../../../../services/units.service";
 import {StorageService} from "../../../../services/storage.service";
 import {ClientsService} from "../../../../services/clients.service";
+import {ClientsAddDialogComponent} from "../clients-add/clients-add.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-insatnce-clients-view',
   templateUrl: './clients-view-insatnce.component.html',
   styleUrls: ['./clients-view-insatnce.component.scss']
 })
-export class ClientsViewInsatnceComponent implements OnInit {
+export class ClientsViewInsatnceComponent {
   displayedColumns: string[] = ['name', 'phone', 'email', 'type', 'state', 'salle'];
   clients: any;
+  isLoading: boolean = true;
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private clientsService: ClientsService) {
+    private clientsService: ClientsService,
+    public dialog: MatDialog) {
+    this.isLoading = true;
     this.clientsService.getAllClients(this.tokenService.currentInstanceId).subscribe(
       (success: any) => {
         this.clients = success;
-      },
-      (error: any) => {
-
+        console.log(success)
+        this.isLoading = false;
       })
   }
 
-  ngOnInit() {
-    this.load();
-  }
-
-  load() {
+  openAddClientDialog() {
+    const dialogRef = this.dialog.open(ClientsAddDialogComponent, {
+      width: '600px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

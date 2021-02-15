@@ -6,10 +6,10 @@ import {HomeInstanceComponent} from "../../components/instance/home/home-insatnc
 import {MaterialModule} from "../common/app-material.component";
 import {CommonModule} from "@angular/common";
 import {WorkersInstanceViewComponent} from "../../components/instance/workers/workers-view/workers-view-insatnce.component";
-import {WorkersInstanceAddComponent} from "../../components/instance/workers/workers-add/workers-add-insatnce.component";
+import {WorkersAddDialogComponent} from "../../components/instance/workers/workers-add/workers-add-insatnce.component";
 import {WorkersInstanceComponent} from "../../components/instance/workers/workers-insatnce.component";
 import {UnitsInstanceComponent} from "../../components/instance/units/units-insatnce.component";
-import {UnitsInstanceAddComponent} from "../../components/instance/units/units-add/units-add-insatnce.component";
+import {UnitsAddDialogComponent} from "../../components/instance/units/units-add/units-add-insatnce.component";
 import {UnitsInstanceViewComponent} from "../../components/instance/units/units-view/units-view-insatnce.component";
 import {UnitsInstanceDetailsComponent} from "../../components/instance/units/units-details/units-details-insatnce.component";
 import {StorageInstanceComponent} from "../../components/instance/storage/storage-insatnce.component";
@@ -36,14 +36,14 @@ import {SelectCategoryComponent} from "../../components/instance/storage/article
 
     WorkersInstanceComponent,
     WorkersInstanceViewComponent,
-    WorkersInstanceAddComponent,
+    WorkersAddDialogComponent,
 
     ClientsInstanceComponent,
     ClientsViewInsatnceComponent,
     ClientsAddDialogComponent,
 
     UnitsInstanceComponent,
-    UnitsInstanceAddComponent,
+    UnitsAddDialogComponent,
     UnitsInstanceDetailsComponent,
     UnitsInstanceViewComponent,
 

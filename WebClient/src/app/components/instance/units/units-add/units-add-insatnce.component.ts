@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenService} from "../../../../services/token.service";
 import {IdentityService} from "../../../../services/identity.service";
 import {Router} from "@angular/router";
 import {UnitsService} from "../../../../services/units.service";
 import {Guid} from "guid-typescript";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-insatnce-units-add',
   templateUrl: './units-add-insatnce.component.html',
   styleUrls: ['./units-add-insatnce.component.scss']
 })
-export class UnitsInstanceAddComponent {
+export class UnitsAddDialogComponent {
   form!: FormGroup;
   error = "";
   unitTypes: any;
@@ -22,7 +23,9 @@ export class UnitsInstanceAddComponent {
     private identityService: IdentityService,
     private router: Router,
     private unitsService: UnitsService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<UnitsAddDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.unitsService.getAllUnitTypes().subscribe((data: any) => {
       this.unitTypes = data;

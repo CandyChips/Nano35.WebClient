@@ -122,8 +122,6 @@ export class StorageInstanceAddComponent {
       this.storageService.getAllArticles(this.tokenService.currentInstanceId).subscribe((success: any) => {
         this.articles = success;
       })
-    }, (error: any) => {
-
     });
   }
 

@@ -1,12 +1,10 @@
 <mat-tab-group>
-  <mat-tab label="Обзор">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Обзор
+    </ng-template>
     <ng-template matTabContent>
       <app-insatnce-workers-view></app-insatnce-workers-view>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Добавить">
-    <ng-template matTabContent>
-      <app-insatnce-workers-add></app-insatnce-workers-add>
     </ng-template>
   </mat-tab>
   <mat-tab label="Статистика">

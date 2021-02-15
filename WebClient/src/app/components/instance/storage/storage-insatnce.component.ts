@@ -26,14 +26,4 @@ export class StorageInstanceComponent {
       console.log(`Dialog result: ${result}`);
     });
   }
-
-  openAddComingDialog() {
-    const dialogRef = this.dialog.open(ComingsAddInsatnceComponent, {
-      width: '900px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-
-  }
 }

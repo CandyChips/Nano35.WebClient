@@ -36,11 +36,19 @@
     </mat-list>
 
     <!-- coming details ends -->
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Добавление к оприходованию
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-build-coming-detail
+          (dataChanged)="addDetails($event)">
+        </app-build-coming-detail>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-    <app-build-coming-detail
-      (dataChanged)="addDetails($event)">
-    </app-build-coming-detail>
-    <br>
     <button mat-button
             (click)="onSubmin()"
             [disabled]="form.invalid"
