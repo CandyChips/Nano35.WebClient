@@ -88,14 +88,35 @@ export class StorageService {
     return this.http.get<any>(dest);
   }
 
-  getAllComings(instanceId: Guid) : Observable<any> {
-    let dest = "http://localhost:5003/Warehouse/GetAllComings?InstanceId=" + instanceId;
+  getComingDetailsById(comingId: Guid) : Observable<any> {
+    let dest = "http://localhost:5003/Warehouse/GetComingDetailsById?Id=" + comingId;
+
+    return this.http.get<any>(dest);
+  }
+
+  createSelle(data: any, newId: Guid, instanceId: Guid) : Observable<any> {
+    let dest = "http://localhost:5003/warehouse/CreateSell";
+    let opts = {headers:
+        this.addNewIdToHeader(newId,
+          this.addInstanceIdToHeader(instanceId,
+            new HttpHeaders()
+          ))};
+    return this.http.post<any>(dest, data, opts);
+  }
+
+  getAllSells(instanceId: Guid) : Observable<any> {
+    let dest = "http://localhost:5003/Warehouse/GetAllSells?InstanceId=" + instanceId;
+
+    return this.http.get<any>(dest);
+  }
+
+  getSelleDetailsById(selleId: Guid) : Observable<any> {
+    let dest = "http://localhost:5003/Warehouse/GetSelleDetailsById?Id=" + selleId;
 
     return this.http.get<any>(dest);
   }
 
   getSubCategoriesById(parentId: Guid) : Observable<any> {
-    console.log(parentId)
     let dest = "http://localhost:5003/Articles/GetAllArticleCategories?parentId=" + parentId;
     return this.http.get<any>(dest);
   }
