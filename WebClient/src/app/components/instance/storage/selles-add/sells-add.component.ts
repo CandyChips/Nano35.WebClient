@@ -10,11 +10,11 @@ import {StorageService} from "../../../../services/storage.service";
 import {ClientsService} from "../../../../services/clients.service";
 
 @Component({
-  selector: 'app-insatnce-comings-add',
-  templateUrl: './comings-add-insatnce.component.html',
-  styleUrls: ['./comings-add-insatnce.component.scss']
+  selector: 'app-sells-add',
+  templateUrl: './sells-add.component.html',
+  styleUrls: ['./sells-add.component.scss']
 })
-export class ComingsAddInsatnceComponent {
+export class SellsAddComponent {
   form!: FormGroup;
   error = "";
   isLoading = true;
@@ -28,7 +28,7 @@ export class ComingsAddInsatnceComponent {
     private router: Router,
     private unitsService: UnitsService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<ComingsAddInsatnceComponent>,
+    public dialogRef: MatDialogRef<SellsAddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.formBuilder.group({
       newId: [

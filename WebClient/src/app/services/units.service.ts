@@ -14,7 +14,7 @@ export class UnitsService {
   }
 
   getAllUnits(instanceId: Guid, unitTypeId: Guid): Observable<any> {
-    let dest = "http://localhost:5102/Units/GetAllUnits?instanceId=" + instanceId.toString();
+    let dest = "http://localhost:5002/Units/GetAllUnits?instanceId=" + instanceId.toString();
 
     if(!unitTypeId.isEmpty()) {
       dest += "&regionId=" + unitTypeId.toString();
@@ -24,13 +24,13 @@ export class UnitsService {
   }
 
   getAllUnitTypes(): Observable<any> {
-    let dest = "http://localhost:5102/Units/GetAllUnitTypes";
+    let dest = "http://localhost:5002/Units/GetAllUnitTypes";
 
     return this.http.get<any>(dest);
   }
 
   createUnit(data: any) {
-    let dest = "http://localhost:5102/Units/CreateUnit";
+    let dest = "http://localhost:5002/Units/CreateUnit";
 
     return this.http.post<any>(dest, data);
   }

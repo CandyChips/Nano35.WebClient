@@ -28,6 +28,8 @@ import {SelectClientComponent} from "../../components/instance/storage/comings-a
 import {SelectArticleComponent} from "../../components/instance/storage/comings-add/select-article/select-article.component";
 import {SelectUnitComponent} from "../../components/instance/storage/comings-add/select-unit/select-unit.component";
 import {SelectCategoryComponent} from "../../components/instance/storage/article-add/select-category/select-category.component";
+import {SellsAddComponent} from "../../components/instance/storage/selles-add/sells-add.component";
+import {SellsViewComponent} from "../../components/instance/storage/selles-view/sells-view.component";
 
 @NgModule({
   declarations: [
@@ -60,7 +62,10 @@ import {SelectCategoryComponent} from "../../components/instance/storage/article
     SelectStorageItemComponent,
     SelectArticleComponent,
     SelectUnitComponent,
-    SelectCategoryComponent
+    SelectCategoryComponent,
+
+    SellsViewComponent,
+    SellsAddComponent,
   ],
   imports: [
     FormsModule,

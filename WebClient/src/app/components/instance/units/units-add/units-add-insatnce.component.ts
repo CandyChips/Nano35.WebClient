@@ -83,7 +83,7 @@ export class UnitsAddDialogComponent {
       this.unitsService.createUnit(this.form.value)
         .subscribe(
           (data: any) => {
-
+            this.dialogRef.close();
           },
           (error: any) => {
             console.log(error);

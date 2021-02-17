@@ -95,7 +95,7 @@ export class ClientsAddDialogComponent {
 
     }, (error: any) => {
       this.isLoading = false;
-      alert(error.error.message)
+      this.dialogRef.close();
     })
   }
 

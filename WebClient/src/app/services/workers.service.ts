@@ -14,7 +14,7 @@ export class WorkersService {
   }
 
   getAllWorkers(roleId: Guid, instanceId: Guid): Observable<any> {
-    let dest = "http://localhost:5102/Workers/GetAllWorkers?instanceId=" + instanceId.toString();
+    let dest = "http://localhost:5002/Workers/GetAllWorkers?instanceId=" + instanceId.toString();
 
     if(!roleId.isEmpty()) {
       dest += "&regionId=" + roleId.toString();
@@ -24,13 +24,13 @@ export class WorkersService {
   }
 
   getAllWorkerRoles(): Observable<any> {
-    let dest = "http://localhost:5102/Workers/GetAllWorkerRoles";
+    let dest = "http://localhost:5002/Workers/GetAllWorkerRoles";
 
     return this.http.get<any>(dest);
   }
 
   createWorker(data: any) {
-    let dest = "http://localhost:5102/Workers/CreateWorker";
+    let dest = "http://localhost:5002/Workers/CreateWorker";
 
     return this.http.post<any>(dest, data);
   }

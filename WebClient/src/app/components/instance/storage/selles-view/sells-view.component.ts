@@ -6,13 +6,14 @@ import {UnitsService} from "../../../../services/units.service";
 import {StorageService} from "../../../../services/storage.service";
 import {ComingsAddInsatnceComponent} from "../comings-add/comings-add-insatnce.component";
 import {MatDialog} from "@angular/material/dialog";
+import {SellsAddComponent} from "../selles-add/sells-add.component";
 
 @Component({
-  selector: 'app-insatnce-comings-view',
-  templateUrl: './comings-view-insatnce.component.html',
-  styleUrls: ['./comings-view-insatnce.component.scss']
+  selector: 'app-sells-view',
+  templateUrl: './sells-view.component.html',
+  styleUrls: ['./sells-view.component.scss']
 })
-export class ComingsViewInsatnceComponent {
+export class SellsViewComponent {
   displayedColumns: string[] = ['number', 'date', 'count', 'actions'];
   items: any;
   isLoading: boolean = true;
@@ -30,8 +31,8 @@ export class ComingsViewInsatnceComponent {
       });
   }
 
-  openAddComingDialog() {
-    const dialogRef = this.dialog.open(ComingsAddInsatnceComponent, {
+  openAddSelleDialog() {
+    const dialogRef = this.dialog.open(SellsAddComponent, {
       width: '900px'
     });
     dialogRef.afterClosed().subscribe(result => {

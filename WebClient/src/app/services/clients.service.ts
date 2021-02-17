@@ -14,30 +14,30 @@ export class ClientsService {
   }
 
   getAllClients(instanceId: Guid): Observable<any> {
-    let dest = "http://localhost:5102/Clients/GetAllClients?instanceId=" + instanceId.toString();
+    let dest = "http://localhost:5002/Clients/GetAllClients?instanceId=" + instanceId.toString();
 
     return this.http.get<any>(dest);
   }
 
   getAllClientTypes(): Observable<any> {
-    let dest = "http://localhost:5102/Clients/GetAllClientTypes";
+    let dest = "http://localhost:5002/Clients/GetAllClientTypes";
 
     return this.http.get<any>(dest);
   }
 
   getAllClientStates(): Observable<any> {
-    let dest = "http://localhost:5102/Clients/GetAllClientStates";
+    let dest = "http://localhost:5002/Clients/GetAllClientStates";
 
     return this.http.get<any>(dest);
   }
 
   getAllClientSalles(): Observable<any> {
-    let dest = "http://localhost:5102/Clients/GetAllClientSalles";
+    let dest = "http://localhost:5002/Clients/GetAllClientSalles";
 
     return this.http.get<any>(dest);
   }
   createClient(data: any): Observable<any> {
-    let dest = "http://localhost:5102/Clients/CreateClient";
+    let dest = "http://localhost:5002/Clients/CreateClient";
 
     return this.http.post<any>(dest, data);
   }

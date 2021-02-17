@@ -19,7 +19,6 @@ export class BuildComingDetailComponent {
   items: any;
   filteredItems: any;
 
-
   itemFilterControl = new FormControl();
   itemSelectControl = new FormControl();
 
@@ -74,6 +73,7 @@ export class BuildComingDetailComponent {
   }
 
   pushDetail() {
+    this.form.controls.newId.setValue(Guid.create().toString());
     this.dataChanged.emit(this.form.value);
     console.log(this.form.value)
   }

@@ -26,54 +26,54 @@ export class StorageService {
   }
 
   getAllStorageItems(instanceId: Guid): Observable<any> {
-    let dest = "http://localhost:5103/StorageItems/GetAllStorageItems?instanceId=" + instanceId.toString()
+    let dest = "http://localhost:5003/StorageItems/GetAllStorageItems?instanceId=" + instanceId.toString()
 
     return this.http.get<any>(dest);
   }
 
   getAllStorageItemById(id: Guid): Observable<any> {
-    let dest = "http://localhost:5103/StorageItems/GetStorageItemById?Id=" + id.toString()
+    let dest = "http://localhost:5003/StorageItems/GetStorageItemById?Id=" + id.toString()
 
     return this.http.get<any>(dest);
   }
 
   getAllStorageItemConditions(): Observable<any> {
-    let dest = "http://localhost:5103/StorageItems/GetAllStorageItemConditions";
+    let dest = "http://localhost:5003/StorageItems/GetAllStorageItemConditions";
 
     return this.http.get<any>(dest);
   }
 
   getAllArticles(instanceId: Guid): Observable<any> {
-    let dest = "http://localhost:5103/Articles/GetAllArticles?instanceId=" + instanceId.toString()
+    let dest = "http://localhost:5003/Articles/GetAllArticles?instanceId=" + instanceId.toString()
 
     return this.http.get<any>(dest);
   }
 
   getAllArticleBrands(instanceId: Guid, categoryId: Guid): Observable<any> {
-    let dest = "http://localhost:5103/Articles/GetAllArticleBrands?instanceId=" + instanceId + "&categoryId=" + categoryId;
+    let dest = "http://localhost:5003/Articles/GetAllArticleBrands?instanceId=" + instanceId + "&categoryId=" + categoryId;
 
     return this.http.get<any>(dest);
   }
 
   getAllArticleModels(instanceId: Guid, categoryId: Guid): Observable<any> {
-    let dest = "http://localhost:5103/Articles/GetAllArticleModels?instanceId=" + instanceId + "&categoryId=" + categoryId;
+    let dest = "http://localhost:5003/Articles/GetAllArticleModels?instanceId=" + instanceId + "&categoryId=" + categoryId;
     return this.http.get<any>(dest);
   }
 
   createStorageItem(data: any) : Observable<any> {
-    let dest = "http://localhost:5103/StorageItems/CreateStorageItem";
+    let dest = "http://localhost:5003/StorageItems/CreateStorageItem";
 
     return this.http.post<any>(dest, data);
   }
 
   createArticle(data: any) : Observable<any> {
-    let dest = "http://localhost:5103/Articles/CreateArticle";
+    let dest = "http://localhost:5003/Articles/CreateArticle";
 
     return this.http.post<any>(dest, data);
   }
 
   createComing(data: any, newId: Guid, instanceId: Guid) : Observable<any> {
-    let dest = "http://localhost:5103/warehouse/CreateComing";
+    let dest = "http://localhost:5003/warehouse/CreateComing";
     let opts = {headers:
         this.addNewIdToHeader(newId,
           this.addInstanceIdToHeader(instanceId,
@@ -83,22 +83,28 @@ export class StorageService {
   }
 
   getAllComings(instanceId: Guid) : Observable<any> {
-    let dest = "http://localhost:5103/Warehouse/GetAllComings?InstanceId=" + instanceId;
+    let dest = "http://localhost:5003/Warehouse/GetAllComings?InstanceId=" + instanceId;
+
+    return this.http.get<any>(dest);
+  }
+
+  getAllComings(instanceId: Guid) : Observable<any> {
+    let dest = "http://localhost:5003/Warehouse/GetAllComings?InstanceId=" + instanceId;
 
     return this.http.get<any>(dest);
   }
 
   getSubCategoriesById(parentId: Guid) : Observable<any> {
     console.log(parentId)
-    let dest = "http://localhost:5103/Articles/GetAllArticleCategories?parentId=" + parentId;
+    let dest = "http://localhost:5003/Articles/GetAllArticleCategories?parentId=" + parentId;
     return this.http.get<any>(dest);
   }
 
   getRootCategories(instanceId: Guid) : Observable<any> {
-    return this.http.get<any>("http://localhost:5103/articles/GetAllArticleCategories?instanceid=" + instanceId);
+    return this.http.get<any>("http://localhost:5003/articles/GetAllArticleCategories?instanceid=" + instanceId);
   }
 
   createSubCategories(data: any) : Observable<any> {
-    return this.http.post<any>("http://localhost:5103/articles/createCategory", data);
+    return this.http.post<any>("http://localhost:5003/articles/createCategory", data);
   }
 }

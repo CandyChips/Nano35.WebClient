@@ -1,5 +1,5 @@
 <div *ngIf="!isLoading" >
-  <button mat-button color="primary" class="full-width" (click)="openAddComingDialog()">Создать</button>
+  <button mat-button color="primary" class="full-width" (click)="openAddSelleDialog()">Создать</button>
   <div *ngIf="items.length != 0" class="full-width">
     <table mat-table [dataSource]="items" class="mat-elevation-z8, full-width">
       <ng-container matColumnDef="number">

@@ -6,12 +6,15 @@
   color: indianred;
 }
 
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .content-width {
   width: 35rem;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.spinner {
+  text-align: center;
+  display: block ruby;
 }

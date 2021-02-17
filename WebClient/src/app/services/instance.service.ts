@@ -11,25 +11,25 @@ export class InstanceService {
   }
 
   getAllInstances(userId: Guid, regionId: Guid, instanceTypeId: Guid): Observable<any> {
-    let dest = "http://localhost:5102/Instances/GetAllInstances?userId=" + userId.toString();
+    let dest = "http://localhost:5002/Instances/GetAllInstances?userId=" + userId.toString();
 
     return this.http.get<any>(dest);
   }
 
   getAllRegions(): Observable<any> {
-    let dest = "http://localhost:5102/Instances/GetAllRegions";
+    let dest = "http://localhost:5002/Instances/GetAllRegions";
 
     return this.http.get<any>(dest);
   }
 
   getAllTypes(): Observable<any> {
-    let dest = "http://localhost:5102/Instances/GetAllInstanceTypes";
+    let dest = "http://localhost:5002/Instances/GetAllInstanceTypes";
 
     return this.http.get<any>(dest);
   }
 
   createInstance(data: any): Observable<any> {
-    let dest = "http://localhost:5102/Instances/CreateInstance";
+    let dest = "http://localhost:5002/Instances/CreateInstance";
 
     return this.http.post<any>(dest, data);
   }

@@ -1,0 +1,67 @@
+<div *ngIf="!isLoading">
+  <h1>Новое оприходование</h1>
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Номер оприходования</mat-label>
+      <input matInput
+             formControlName="number" >
+    </mat-form-field>
+    <app-select-client
+      (dataChanged)="form.controls.clientId.setValue($event)">
+    </app-select-client>
+    <mat-form-field class="full-width">
+      <mat-label>Комментарий</mat-label>
+      <input matInput
+             formControlName="comment" >
+    </mat-form-field>
+
+    <app-select-unit
+      (dataChanged)="updateUnit($event)">
+    </app-select-unit>
+
+    <!-- coming details starts -->
+
+    <mat-list role="list">
+      <mat-list-item role="listitem"
+                     *ngFor="let item of detailsArr.controls; let i = index"
+                     [formGroupName]="i">
+        <span>{{i + 1}} - {{item.value.storageItemString}} {{item.value.count}} шт. по цене: {{item.value.price}}</span>
+        <span class="example-spacer"></span>
+        <div class="example-button-container">
+          <button mat-mini-fab color="warn">
+            <mat-icon (click)="onRemoveDetail(i)">cancel</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <!-- coming details ends -->
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Добавление к оприходованию
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-build-coming-detail
+          (dataChanged)="addDetails($event)">
+        </app-build-coming-detail>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <button mat-button
+            (click)="onSubmin()"
+            [disabled]="form.invalid"
+            class="full-width"
+            color="primary">
+      Создать
+    </button>
+
+    <button mat-button (click)="checkForm()">
+      check
+    </button>
+  </form>
+</div>
+<div class="spinner" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
